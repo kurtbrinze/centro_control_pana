@@ -29,19 +29,6 @@
       "modo": "embebida"
     },
     {
-      "id": "desviaciones",
-      "nombre": "Desviaciones",
-      "corto": "Desviaciones",
-      "descripcion": "Análisis de lo pedido contra lo entregado.",
-      "url": "https://kurtbrinze.github.io/Desviaciones/",
-      "icono": "desviaciones",
-      "dispositivos": [
-        "Laptop"
-      ],
-      "hosting": "GitHub",
-      "modo": "embebida"
-    },
-    {
       "id": "agenda",
       "nombre": "Agenda",
       "corto": "Agenda",
@@ -53,6 +40,19 @@
         "Celular"
       ],
       "hosting": "Vercel",
+      "modo": "embebida"
+    },
+    {
+      "id": "desviaciones",
+      "nombre": "Desviaciones",
+      "corto": "Desviaciones",
+      "descripcion": "Análisis de lo pedido contra lo entregado.",
+      "url": "https://kurtbrinze.github.io/Desviaciones/",
+      "icono": "desviaciones",
+      "dispositivos": [
+        "Laptop"
+      ],
+      "hosting": "GitHub",
       "modo": "embebida"
     }
   ]

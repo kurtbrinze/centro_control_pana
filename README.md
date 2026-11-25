@@ -10,8 +10,8 @@ Funciona en laptop, tablet y celular, y se puede instalar como app. Estilo Rinze
 |---|---|
 | Control Producción | https://calculoproduccion.vercel.app |
 | Entregas a CEDI | https://kurtbrinze.github.io/CD/ |
-| Desviaciones | https://kurtbrinze.github.io/Desviaciones/ |
 | Agenda | https://agenda-chi-wheat.vercel.app/ |
+| Desviaciones | https://kurtbrinze.github.io/Desviaciones/ |
 
 ## Agregar una app
 
@@ -49,6 +49,7 @@ vez que el centro vuelve a mostrar una app le manda el mensaje
 
 La versión visible está en `index.html` (`VERSION`). Cada actualización la sube.
 
+- **V.4** — Logo oficial de Rinze Studio. Barra lateral compacta: cada app es un ícono con su nombre en letra pequeña. Orden: Producción, Entregas, Agenda, Desviaciones.
 - **V.3** — Instalable como app (PWA): ícono, pantalla completa, accesos directos a cada app y funciona sin conexión para abrir el centro.
 - **V.2** — Avisa a la app que se vuelve a mostrar para que traiga lo último de su nube.
 - **V.1** — Centro con barra lateral, íconos en tablet y navegación inferior en celular; registro en `apps.json`.

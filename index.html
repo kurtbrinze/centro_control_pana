@@ -18,7 +18,7 @@
   --bg:#0A0E17; --s1:#121824; --s2:#1E293B; --line:#253248; --line2:#334155;
   --tx:#E6EDF6; --tx2:#94A3B8; --tx3:#64748B;
   --g:#00FF88; --c:#00D2FE; --grad:linear-gradient(135deg,#00FF88,#00D2FE);
-  --rail:248px; --top:56px; --nav:68px;
+  --rail:92px; --top:56px; --nav:68px;
   --safe-b:env(safe-area-inset-bottom,0px); --safe-t:env(safe-area-inset-top,0px);
 }
 *{box-sizing:border-box;margin:0;padding:0}
@@ -30,23 +30,22 @@ svg.i.sm{width:18px;height:18px}
 
 .shell{display:grid;grid-template-columns:var(--rail) 1fr;height:100%}
 
-/* Barra lateral */
-.rail{background:var(--s1);border-right:1px solid var(--line);display:flex;flex-direction:column;padding:calc(18px + var(--safe-t)) 14px 18px;gap:6px;min-height:0}
-.brand{display:flex;align-items:center;gap:12px;padding:4px 8px 18px}
-.brand .wm{line-height:1}
-.brand .wm b{display:block;font-size:17px;font-weight:700;letter-spacing:-.01em}
-.brand .wm span{display:block;font-size:10px;font-weight:600;letter-spacing:.28em;color:var(--tx2);margin-top:4px}
-.sec{font-size:11px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--tx3);padding:14px 10px 6px}
-.nav-list{display:flex;flex-direction:column;gap:4px;overflow:auto;min-height:0}
-.item{display:flex;align-items:center;gap:12px;padding:10px 12px;border-radius:10px;color:var(--tx2);font-size:14px;font-weight:500;position:relative;text-align:left;width:100%;transition:background .15s,color .15s}
+/* Barra lateral: íconos con descripción pequeña */
+.rail{background:var(--s1);border-right:1px solid var(--line);display:flex;flex-direction:column;align-items:center;padding:calc(14px + var(--safe-t)) 8px 14px;gap:4px;min-height:0}
+.brand{display:grid;place-items:center;width:56px;height:56px;border-radius:14px;margin-bottom:10px;transition:background .15s}
+.brand:hover{background:var(--s2)}
+.brand svg{width:40px;height:auto;display:block}
+.nav-list{display:flex;flex-direction:column;gap:4px;overflow:auto;min-height:0;width:100%;align-items:center;scrollbar-width:none}
+.sep{width:36px;height:1px;background:var(--line);margin:6px 0}
+.item{display:flex;flex-direction:column;align-items:center;gap:5px;padding:9px 4px 8px;width:76px;border-radius:12px;color:var(--tx3);position:relative;text-align:center;transition:background .15s,color .15s}
 .item:hover{background:var(--s2);color:var(--tx)}
 .item.on{background:rgba(0,255,136,.08);color:var(--tx)}
-.item.on::before{content:"";position:absolute;left:-14px;top:8px;bottom:8px;width:3px;border-radius:0 3px 3px 0;background:var(--grad)}
+.item.on::before{content:"";position:absolute;left:-8px;top:12px;bottom:12px;width:3px;border-radius:0 3px 3px 0;background:var(--grad)}
 .item.on svg.i{stroke:url(#gr)}
-.item .dot{margin-left:auto;width:7px;height:7px;border-radius:50%;background:var(--g);box-shadow:0 0 8px var(--g);opacity:0;transition:opacity .2s}
+.item .lbl{font-size:10.5px;font-weight:500;line-height:1.2;max-width:70px;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.item .dot{position:absolute;top:7px;right:14px;width:6px;height:6px;border-radius:50%;background:var(--g);box-shadow:0 0 8px var(--g);opacity:0;transition:opacity .2s}
 .item.alive .dot{opacity:1}
-.item .lbl{white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-.rail-foot{margin-top:auto;padding:14px 10px 2px;border-top:1px solid var(--line);display:flex;align-items:center;justify-content:space-between;font-size:12px;color:var(--tx3)}
+.rail-foot{margin-top:auto;padding-top:10px;display:flex;flex-direction:column;align-items:center;gap:8px}
 .ver{font-family:'JetBrains Mono',monospace;font-size:11px;padding:3px 8px;border-radius:6px;border:1px solid var(--line2);color:var(--g)}
 
 /* Zona principal */
@@ -83,6 +82,9 @@ svg.i.sm{width:18px;height:18px}
 .card.add:hover{transform:none;border-color:var(--line2)}
 .card.add .ic svg.i{stroke:var(--tx3)}
 .card.add code{font-family:'JetBrains Mono',monospace;font-size:12px;color:var(--g)}
+.firma{margin-top:40px;max-width:1200px;opacity:.55;transition:opacity .2s}
+.firma:hover{opacity:.9}
+.firma svg{width:140px;height:auto;display:block}
 .tip{margin-top:28px;max-width:1200px;font-size:12px;color:var(--tx3);display:flex;gap:8px;align-items:center}
 
 /* Apps embebidas */
@@ -112,19 +114,6 @@ svg.i.sm{width:18px;height:18px}
 /* Navegación inferior (celular) */
 .bottom{display:none}
 
-/* Tablet: barra de íconos */
-@media (max-width:1100px){
-  :root{--rail:76px}
-  .rail{padding:16px 10px;align-items:center}
-  .brand{padding:4px 0 14px}
-  .brand .wm,.sec,.item .lbl,.rail-foot .who{display:none}
-  .item{justify-content:center;padding:12px;width:52px}
-  .item.on::before{left:-10px}
-  .item .dot{position:absolute;top:8px;right:8px;margin:0;width:6px;height:6px}
-  .rail-foot{flex-direction:column;gap:8px;padding:12px 0 0}
-  .item[data-tip]:hover::after{content:attr(data-tip);position:absolute;left:62px;top:50%;transform:translateY(-50%);background:var(--s2);border:1px solid var(--line2);color:var(--tx);font-size:12px;padding:6px 10px;border-radius:8px;white-space:nowrap;z-index:20;pointer-events:none}
-}
-
 /* Celular: navegación abajo */
 @media (max-width:640px){
   .shell{grid-template-columns:1fr}
@@ -150,26 +139,30 @@ svg.i.sm{width:18px;height:18px}
 </head>
 <body>
 <svg width="0" height="0" style="position:absolute" aria-hidden="true">
-  <defs><linearGradient id="gr" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#00FF88"/><stop offset="1" stop-color="#00D2FE"/></linearGradient></defs>
+  <defs><linearGradient id="rinzeBrandGrad" x1="10%" y1="10%" x2="90%" y2="90%"><stop offset="0%" stop-color="#68FF6B"/><stop offset="45%" stop-color="#00FF88"/><stop offset="100%" stop-color="#00C4FF"/></linearGradient><linearGradient id="studioTextGrad" x1="0%" y1="0%" x2="100%" y2="0%"><stop offset="0%" stop-color="#68FF6B"/><stop offset="100%" stop-color="#4ADE80"/></linearGradient><filter id="rinzeGlow" x="-20%" y="-20%" width="140%" height="140%"><feGaussianBlur stdDeviation="5" result="blur"/><feComposite in="SourceGraphic" in2="blur" operator="over"/></filter><linearGradient id="gr" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#00FF88"/><stop offset="1" stop-color="#00D2FE"/></linearGradient>
+  <g id="rinzeMark">
+    <g transform="translate(55, 45)" filter="url(#rinzeGlow)">
+      <path d="M 35 25 L 135 25 A 68 68 0 0 1 135 161 L 122 161 L 195 235 L 152 235 L 88 168 L 58 168 L 58 235 L 35 235 L 35 142 L 85 142" fill="none" stroke="url(#rinzeBrandGrad)" stroke-width="11" stroke-linecap="round" stroke-linejoin="round"/>
+      <path d="M 85 68 L 132 68 A 26 26 0 0 1 132 120 L 95 120" fill="none" stroke="url(#rinzeBrandGrad)" stroke-width="11" stroke-linecap="round" stroke-linejoin="round"/>
+      <path d="M 35 102 L 35 25 L 85 142" fill="none" stroke="url(#rinzeBrandGrad)" stroke-width="11" stroke-linecap="round" stroke-linejoin="round"/>
+      <circle cx="35" cy="25" r="13" fill="url(#rinzeBrandGrad)"/><circle cx="85" cy="68" r="12" fill="url(#rinzeBrandGrad)"/><circle cx="85" cy="142" r="12" fill="url(#rinzeBrandGrad)"/>
+      <circle cx="122" cy="161" r="12" fill="url(#rinzeBrandGrad)"/><circle cx="35" cy="235" r="13" fill="url(#rinzeBrandGrad)"/><circle cx="195" cy="235" r="13" fill="url(#rinzeBrandGrad)"/>
+    </g>
+  </g>
+  </defs>
+
 </svg>
 
 <div class="shell">
   <aside class="rail" aria-label="Aplicaciones">
-    <div class="brand">
-      <svg viewBox="0 0 40 40" width="38" height="38" aria-hidden="true">
-        <rect x="1" y="1" width="38" height="38" rx="10" fill="#121824" stroke="#253248"/>
-        <path d="M13 30V10h8.5a5.5 5.5 0 0 1 0 11H13M20 21l7 9" fill="none" stroke="url(#gr)" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
-        <circle cx="13" cy="10" r="2.6" fill="#0A0E17" stroke="#00FF88" stroke-width="2"/>
-        <circle cx="13" cy="30" r="2.6" fill="#0A0E17" stroke="#00FF88" stroke-width="2"/>
-        <circle cx="27" cy="30" r="2.6" fill="#0A0E17" stroke="#00D2FE" stroke-width="2"/>
-      </svg>
-      <div class="wm"><b>Rinze</b><span>STUDIO</span></div>
-    </div>
-    <button class="item" id="nav-home" data-tip="Inicio" onclick="go('')"></button>
-    <div class="sec">Aplicaciones</div>
+    <button class="brand" onclick="go('')" aria-label="Inicio · Rinze Studio" title="Rinze Studio"><svg viewBox="62 42 216 266" aria-hidden="true"><use href="#rinzeMark"/></svg></button>
+    <button class="item" id="nav-home" onclick="go('')"></button>
+    <div class="sep"></div>
     <nav class="nav-list" id="navList"></nav>
-    <button class="item inst" id="instRail" data-tip="Instalar app" onclick="instalar()"></button>
-    <div class="rail-foot"><span class="who">Centro de Control</span><span class="ver" id="ver"></span></div>
+    <div class="rail-foot">
+      <button class="item inst" id="instRail" onclick="instalar()"></button>
+      <span class="ver" id="ver"></span>
+    </div>
   </aside>
 
   <main class="main">
@@ -190,15 +183,17 @@ svg.i.sm{width:18px;height:18px}
 </div>
 
 <script>
-const VERSION = 'V.3';
+const VERSION = 'V.4';
 
 /* Copia de respaldo del registro. La fuente principal es apps.json. */
 const RESPALDO = [
   {id:'produccion',nombre:'Control Producción',corto:'Producción',descripcion:'Cálculo y control de la producción diaria.',url:'https://calculoproduccion.vercel.app',icono:'produccion',dispositivos:['Laptop','Tablet'],hosting:'Vercel',modo:'embebida'},
   {id:'entregas',nombre:'Entregas a CEDI',corto:'Entregas',descripcion:'Formularios, órdenes de compra, citas y QR para el CEDI.',url:'https://kurtbrinze.github.io/CD/',icono:'entregas',dispositivos:['Laptop'],hosting:'GitHub',modo:'embebida'},
-  {id:'desviaciones',nombre:'Desviaciones',corto:'Desviaciones',descripcion:'Análisis de lo pedido contra lo entregado.',url:'https://kurtbrinze.github.io/Desviaciones/',icono:'desviaciones',dispositivos:['Laptop'],hosting:'GitHub',modo:'embebida'},
-  {id:'agenda',nombre:'Agenda',corto:'Agenda',descripcion:'Citas, tareas y pendientes de la panadería.',url:'https://agenda-chi-wheat.vercel.app/',icono:'agenda',dispositivos:['Laptop','Celular'],hosting:'Vercel',modo:'embebida'}
+  {id:'agenda',nombre:'Agenda',corto:'Agenda',descripcion:'Citas, tareas y pendientes de la panadería.',url:'https://agenda-chi-wheat.vercel.app/',icono:'agenda',dispositivos:['Laptop','Celular'],hosting:'Vercel',modo:'embebida'},
+  {id:'desviaciones',nombre:'Desviaciones',corto:'Desviaciones',descripcion:'Análisis de lo pedido contra lo entregado.',url:'https://kurtbrinze.github.io/Desviaciones/',icono:'desviaciones',dispositivos:['Laptop'],hosting:'GitHub',modo:'embebida'}
 ];
+
+const LOGO = `<svg viewBox="40 30 860 290" role="img" aria-label="Rinze Studio"><use href="#rinzeMark"/><g transform="translate(315, 45)"><text x="0" y="138" font-family="'Inter','Montserrat',-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif" font-size="136" font-weight="600" fill="#FFFFFF" letter-spacing="-2">Rinze</text><text x="6" y="218" font-family="'Inter','Montserrat',-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif" font-size="52" font-weight="500" fill="url(#studioTextGrad)" letter-spacing="22">STUDIO</text></g></svg>`;
 
 const ICONOS = {
   inicio:'<rect x="3" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="3" width="7" height="7" rx="1.5"/><rect x="3" y="14" width="7" height="7" rx="1.5"/><rect x="14" y="14" width="7" height="7" rx="1.5"/>',
@@ -276,7 +271,8 @@ function pintarInicio(){
         <div class="body"><div><h3>Agregar aplicación</h3><p>Agrega un bloque en <code>apps.json</code> y aparecerá aquí y en el menú.</p></div></div>
       </div>
     </div>
-    <div class="tip">${ico('info','i sm')}<span>Si una app no carga dentro del centro, usa «Abrir aparte» en la barra superior.</span></div>`;
+    <div class="tip">${ico('info','i sm')}<span>Si una app no carga dentro del centro, usa «Abrir aparte» en la barra superior.</span></div>
+    <div class="firma" aria-label="Rinze Studio">${LOGO}</div>`;
 }
 
 function pintarTopbar(){
@@ -366,7 +362,7 @@ const esIOS = () => /iPhone|iPad|iPod/.test(navigator.userAgent) || (navigator.p
 const puedeInstalar = () => !instalada() && (!!promptInstalar || esIOS());
 function pintarInstalar(){
   const r = document.getElementById('instRail');
-  r.innerHTML = ico('instalar') + '<span class="lbl">Instalar app</span>';
+  r.innerHTML = ico('instalar') + '<span class="lbl">Instalar</span>';
   document.querySelectorAll('.inst').forEach(b => b.classList.toggle('show', puedeInstalar()));
 }
 async function instalar(){
