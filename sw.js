@@ -1,10 +1,12 @@
 /* Service worker del Centro de Control.
+   Sólo guarda el propio centro y sólo borra sus copias (prefijo 'centro-'):
+   las apps de /apps/ viven en este mismo sitio y tienen las suyas.
    Sólo guarda el propio centro (su página, apps.json e íconos) para que abra
    rápido y sin conexión. Las apps embebidas son de otros sitios y no pasan por
    aquí: cada una maneja sus datos y su propia sincronización.
    La página y apps.json van primero a la red, para que un cambio publicado se
    vea al abrir; si no hay conexión, se usa la copia guardada. */
-const CACHE = 'centro-V.5';
+const CACHE = 'centro-V.6';
 const BASE = ['/', '/index.html', '/apps.json', '/manifest.webmanifest',
   '/icons/icon-192.png', '/icons/icon-512.png', '/icons/apple-touch-icon.png', '/icons/icon.svg'];
 
@@ -13,7 +15,7 @@ self.addEventListener('install', (e) => {
 });
 self.addEventListener('activate', (e) => {
   e.waitUntil(caches.keys()
-    .then((ks) => Promise.all(ks.filter((k) => k !== CACHE).map((k) => caches.delete(k))))
+    .then((ks) => Promise.all(ks.filter((k) => k.startsWith('centro-') && k !== CACHE).map((k) => caches.delete(k))))
     .then(() => self.clients.claim()));
 });
 self.addEventListener('fetch', (e) => {
@@ -21,6 +23,9 @@ self.addEventListener('fetch', (e) => {
   if (req.method !== 'GET') return;
   const url = new URL(req.url);
   if (url.origin !== location.origin) return;
+  /* /apps/... son las apps servidas desde este mismo sitio: tienen su propio
+     service worker y sus propias copias. El centro no se mete. */
+  if (url.pathname.startsWith('/apps/')) return;
   const fresco = req.mode === 'navigate' || url.pathname === '/' || url.pathname.endsWith('.html') || url.pathname.endsWith('apps.json');
   if (fresco) {
     e.respondWith(fetch(req, { cache: 'no-store' })

@@ -1,5 +1,5 @@
 {
-  "_ayuda": "Para agregar una app, copia un bloque y cambia sus datos. corto: nombre breve para la barra del celular. icono: produccion | entregas | desviaciones | agenda | inventario | documento | camara | grafica | caja. modo: embebida (dentro del centro) o pestana (se abre aparte).",
+  "_ayuda": "Para agregar una app, copia un bloque y cambia sus datos. corto: nombre breve para la barra del celular. icono: produccion | entregas | desviaciones | agenda | inventario | documento | camara | grafica | caja. modo: embebida (dentro del centro) o pestana (se abre aparte). Las apps que necesitan elegir carpetas (Entregas a CEDI, Desviaciones) se sirven desde el mismo sitio del centro, en /apps/..., con una regla en vercel.json; 'original' guarda su dirección real.",
   "apps": [
     {
       "id": "produccion",
@@ -20,13 +20,14 @@
       "nombre": "Entregas a CEDI",
       "corto": "Entregas",
       "descripcion": "Formularios, órdenes de compra, citas y QR para el CEDI.",
-      "url": "https://kurtbrinze.github.io/CD/",
+      "url": "/apps/cd/",
       "icono": "entregas",
       "dispositivos": [
         "Laptop"
       ],
       "hosting": "GitHub",
-      "modo": "embebida"
+      "modo": "embebida",
+      "original": "https://kurtbrinze.github.io/CD/"
     },
     {
       "id": "agenda",
@@ -47,13 +48,14 @@
       "nombre": "Desviaciones",
       "corto": "Desviaciones",
       "descripcion": "Análisis de lo pedido contra lo entregado.",
-      "url": "https://kurtbrinze.github.io/Desviaciones/",
+      "url": "/apps/desviaciones/",
       "icono": "desviaciones",
       "dispositivos": [
         "Laptop"
       ],
       "hosting": "GitHub",
-      "modo": "embebida"
+      "modo": "embebida",
+      "original": "https://kurtbrinze.github.io/Desviaciones/"
     }
   ]
 }
