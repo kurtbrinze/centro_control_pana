@@ -2,7 +2,7 @@
 
 Un solo lugar para abrir las apps de trabajo de la panadería. Cada app se abre
 embebida dentro del centro y sigue abierta mientras se cambia de una a otra.
-Funciona en laptop, tablet y celular. Estilo Rinze Studio.
+Funciona en laptop, tablet y celular, y se puede instalar como app. Estilo Rinze Studio.
 
 ## Apps
 
@@ -49,5 +49,6 @@ vez que el centro vuelve a mostrar una app le manda el mensaje
 
 La versión visible está en `index.html` (`VERSION`). Cada actualización la sube.
 
+- **V.3** — Instalable como app (PWA): ícono, pantalla completa, accesos directos a cada app y funciona sin conexión para abrir el centro.
 - **V.2** — Avisa a la app que se vuelve a mostrar para que traiga lo último de su nube.
 - **V.1** — Centro con barra lateral, íconos en tablet y navegación inferior en celular; registro en `apps.json`.
