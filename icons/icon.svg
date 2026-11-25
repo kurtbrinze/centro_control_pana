@@ -1,8 +1,16 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="20.0 25.0 300.0 300.0"><defs><linearGradient id="rinzeBrandGrad" x1="10%" y1="10%" x2="90%" y2="90%"><stop offset="0%" stop-color="#68FF6B"/><stop offset="45%" stop-color="#00FF88"/><stop offset="100%" stop-color="#00C4FF"/></linearGradient><filter id="rinzeGlow" x="-20%" y="-20%" width="140%" height="140%"><feGaussianBlur stdDeviation="5" result="blur"/><feComposite in="SourceGraphic" in2="blur" operator="over"/></filter></defs><rect x="20.0" y="25.0" width="300.0" height="300.0" fill="#0A0E17"/><g>
-    <g transform="translate(55, 45)" filter="url(#rinzeGlow)">
-      <path d="M 35 25 L 135 25 A 68 68 0 0 1 135 161 L 122 161 L 195 235 L 152 235 L 88 168 L 58 168 L 58 235 L 35 235 L 35 142 L 85 142" fill="none" stroke="url(#rinzeBrandGrad)" stroke-width="11" stroke-linecap="round" stroke-linejoin="round"/>
-      <path d="M 85 68 L 132 68 A 26 26 0 0 1 132 120 L 95 120" fill="none" stroke="url(#rinzeBrandGrad)" stroke-width="11" stroke-linecap="round" stroke-linejoin="round"/>
-      <path d="M 35 102 L 35 25 L 85 142" fill="none" stroke="url(#rinzeBrandGrad)" stroke-width="11" stroke-linecap="round" stroke-linejoin="round"/>
-      <circle cx="35" cy="25" r="13" fill="url(#rinzeBrandGrad)"/><circle cx="85" cy="68" r="12" fill="url(#rinzeBrandGrad)"/><circle cx="85" cy="142" r="12" fill="url(#rinzeBrandGrad)"/>
-      <circle cx="122" cy="161" r="12" fill="url(#rinzeBrandGrad)"/><circle cx="35" cy="235" r="13" fill="url(#rinzeBrandGrad)"/><circle cx="195" cy="235" r="13" fill="url(#rinzeBrandGrad)"/>
-    </g></svg>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+<defs>
+<radialGradient id="halo" cx="50%" cy="50%" r="50%"><stop offset="0" stop-color="#FF8A1F" stop-opacity=".28"/><stop offset="1" stop-color="#FF8A1F" stop-opacity="0"/></radialGradient>
+<linearGradient id="corteza" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#FF9A2E"/><stop offset="1" stop-color="#E8650A"/></linearGradient>
+<linearGradient id="miga" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#FFD9A0"/><stop offset="1" stop-color="#FFC170"/></linearGradient>
+</defs>
+<rect rx="112" fill="#0A0E17"/>
+<g transform="translate(256 256) scale(1.0) translate(-256 -252)">
+<circle cx="256" cy="252" r="210" fill="url(#halo)"/>
+<path d="M166 236C120 228 104 170 140 136C170 108 214 108 256 116C298 108 342 108 372 136C408 170 392 228 346 236L346 372Q346 396 322 396L190 396Q166 396 166 372Z" fill="url(#corteza)"/>
+<path d="M166 236C120 228 104 170 140 136C170 108 214 108 256 116C298 108 342 108 372 136C408 170 392 228 346 236L346 372Q346 396 322 396L190 396Q166 396 166 372Z" fill="url(#miga)" transform="translate(256 258) scale(.8) translate(-256 -252)"/>
+<g fill="#F2A24E" opacity=".75">
+<ellipse cx="214" cy="200" rx="9" ry="6"/><ellipse cx="292" cy="186" rx="7" ry="5"/><ellipse cx="248" cy="246" rx="6" ry="4.5"/>
+<ellipse cx="310" cy="262" rx="9" ry="6"/><ellipse cx="208" cy="296" rx="7" ry="5"/><ellipse cx="270" cy="318" rx="8" ry="5.5"/>
+<ellipse cx="232" cy="350" rx="5" ry="4"/><ellipse cx="300" cy="352" rx="6" ry="4.5"/><ellipse cx="338" cy="214" rx="5" ry="4"/>
+</g></g></svg>

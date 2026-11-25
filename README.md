@@ -49,6 +49,7 @@ vez que el centro vuelve a mostrar una app le manda el mensaje
 
 La versión visible está en `index.html` (`VERSION`). Cada actualización la sube.
 
+- **V.5** — Ícono de la app instalada: rodaja de pan naranja sobre fondo oscuro. El logo de Rinze Studio sigue dentro del centro.
 - **V.4** — Logo oficial de Rinze Studio. Barra lateral compacta: cada app es un ícono con su nombre en letra pequeña. Orden: Producción, Entregas, Agenda, Desviaciones.
 - **V.3** — Instalable como app (PWA): ícono, pantalla completa, accesos directos a cada app y funciona sin conexión para abrir el centro.
 - **V.2** — Avisa a la app que se vuelve a mostrar para que traiga lo último de su nube.
