@@ -46,12 +46,20 @@
   ],
   "rewrites": [
     {
-      "source": "/apps/cd/:path*",
-      "destination": "https://kurtbrinze.github.io/CD/:path*"
+      "source": "/apps/cd/",
+      "destination": "https://kurtbrinze.github.io/CD/"
     },
     {
-      "source": "/apps/desviaciones/:path*",
-      "destination": "https://kurtbrinze.github.io/Desviaciones/:path*"
+      "source": "/apps/cd/:path+",
+      "destination": "https://kurtbrinze.github.io/CD/:path+"
+    },
+    {
+      "source": "/apps/desviaciones/",
+      "destination": "https://kurtbrinze.github.io/Desviaciones/"
+    },
+    {
+      "source": "/apps/desviaciones/:path+",
+      "destination": "https://kurtbrinze.github.io/Desviaciones/:path+"
     }
   ]
 }
