@@ -58,10 +58,25 @@ muestran un aviso para poner la clave de sincronización. Después de eso, cada
 vez que el centro vuelve a mostrar una app le manda el mensaje
 `{ tipo: 'cc:mostrar' }`, y la app trae lo último de Vercel Blob.
 
+## Calendario
+
+Botón **Calendario** abajo a la izquierda (o Alt+C; en el celular, el ícono de
+la barra superior). Abre una ventana encima de cualquier app que se mueve
+arrastrando su barra y recuerda dónde quedó. Muestra el año con dos vistas:
+
+- **Semana normal**: ISO 8601, de lunes a domingo.
+- **Semana Walmart**: de sábado a viernes; el año fiscal arranca el sábado más
+  cercano al 1 de febrero y la semana se escribe año + número (202643), igual
+  que en la Agenda.
+
+Al tocar un día, abajo aparecen las dos semanas con sus fechas. En el inicio,
+una línea muestra las semanas de hoy.
+
 ## Versión
 
 La versión visible está en `index.html` (`VERSION`). Cada actualización la sube.
 
+- **V.7** — Calendario flotante con semanas normales y Walmart; línea «Hoy» en el inicio; logo completo de Rinze Studio arriba a la izquierda (se quita el del pie del inicio).
 - **V.6** — Entregas a CEDI y Desviaciones se sirven desde el mismo sitio del centro para que puedan elegir carpetas.
 - **V.5** — Ícono de la app instalada: rodaja de pan naranja sobre fondo oscuro. El logo de Rinze Studio sigue dentro del centro.
 - **V.4** — Logo oficial de Rinze Studio. Barra lateral compacta: cada app es un ícono con su nombre en letra pequeña. Orden: Producción, Entregas, Agenda, Desviaciones.

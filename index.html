@@ -32,9 +32,9 @@ svg.i.sm{width:18px;height:18px}
 
 /* Barra lateral: íconos con descripción pequeña */
 .rail{background:var(--s1);border-right:1px solid var(--line);display:flex;flex-direction:column;align-items:center;padding:calc(14px + var(--safe-t)) 8px 14px;gap:4px;min-height:0}
-.brand{display:grid;place-items:center;width:56px;height:56px;border-radius:14px;margin-bottom:10px;transition:background .15s}
+.brand{display:grid;place-items:center;width:80px;padding:8px 4px;border-radius:12px;margin-bottom:8px;transition:background .15s}
 .brand:hover{background:var(--s2)}
-.brand svg{width:40px;height:auto;display:block}
+.brand svg{width:72px;height:auto;display:block}
 .nav-list{display:flex;flex-direction:column;gap:4px;overflow:auto;min-height:0;width:100%;align-items:center;scrollbar-width:none}
 .sep{width:36px;height:1px;background:var(--line);margin:6px 0}
 .item{display:flex;flex-direction:column;align-items:center;gap:5px;padding:9px 4px 8px;width:76px;border-radius:12px;color:var(--tx3);position:relative;text-align:center;transition:background .15s,color .15s}
@@ -82,9 +82,6 @@ svg.i.sm{width:18px;height:18px}
 .card.add:hover{transform:none;border-color:var(--line2)}
 .card.add .ic svg.i{stroke:var(--tx3)}
 .card.add code{font-family:'JetBrains Mono',monospace;font-size:12px;color:var(--g)}
-.firma{margin-top:40px;max-width:1200px;opacity:.55;transition:opacity .2s}
-.firma:hover{opacity:.9}
-.firma svg{width:140px;height:auto;display:block}
 .tip{margin-top:28px;max-width:1200px;font-size:12px;color:var(--tx3);display:flex;gap:8px;align-items:center}
 
 /* Apps embebidas */
@@ -100,6 +97,63 @@ svg.i.sm{width:18px;height:18px}
 .loader .msg{font-size:14px;color:var(--tx2)}
 .loader .slow{display:none;flex-direction:column;align-items:center;gap:12px;font-size:13px;color:var(--tx3);max-width:320px}
 .loader.late .slow{display:flex}
+
+/* Hoy (inicio) */
+.hoy{margin-top:22px;display:inline-flex;align-items:center;gap:14px;flex-wrap:wrap;padding:10px 14px;border-radius:12px;background:var(--s1);border:1px solid var(--line);font-size:13px;color:var(--tx2);text-align:left;transition:border-color .2s}
+.hoy:hover{border-color:rgba(0,255,136,.45)}
+.hoy svg.i{stroke:url(#gr)}
+.hoy b{color:var(--tx);font-weight:600}
+.hoy .wm{color:var(--g);font-family:'JetBrains Mono',monospace;font-weight:500}
+.hoy .sepv{width:1px;height:16px;background:var(--line2)}
+.hoy .ver-cal{color:var(--c);font-weight:500}
+.cal-movil{display:none}
+
+/* Calendario flotante */
+.cal{position:fixed;z-index:60;width:min(760px,calc(100vw - 24px));max-height:calc(100vh - 24px);display:none;flex-direction:column;background:var(--s1);border:1px solid var(--line2);border-radius:16px;box-shadow:0 24px 60px rgba(0,0,0,.55);overflow:hidden}
+.cal.show{display:flex}
+.cal-hd{display:flex;align-items:center;gap:10px;padding:10px 10px 10px 16px;border-bottom:1px solid var(--line);cursor:grab;user-select:none;touch-action:none}
+.cal.arr .cal-hd{cursor:grabbing}
+.cal-hd .tt{display:flex;align-items:center;gap:8px;font-size:14px;font-weight:600}
+.cal-hd .tt svg.i{stroke:url(#gr)}
+.cal-yr{display:flex;align-items:center;gap:2px;margin-left:6px}
+.cal-yr b{font-size:15px;font-weight:600;min-width:46px;text-align:center}
+.ib{width:32px;height:32px;display:grid;place-items:center;border-radius:8px;color:var(--tx2)}
+.ib:hover{background:var(--s2);color:var(--tx)}
+.seg{margin-left:auto;display:flex;background:var(--bg);border:1px solid var(--line);border-radius:10px;padding:3px}
+.seg button{padding:5px 12px;border-radius:7px;font-size:12px;font-weight:500;color:var(--tx2)}
+.seg button.on{background:var(--s2);color:var(--tx)}
+.seg button.on.w{color:var(--g)}
+.cal-hoy{font-size:12px;font-weight:500;padding:6px 10px;border-radius:8px;border:1px solid var(--line2);color:var(--tx2)}
+.cal-hoy:hover{color:var(--tx);border-color:var(--tx3)}
+.cal-bd{overflow:auto;padding:14px 16px 6px;display:grid;grid-template-columns:repeat(4,1fr);gap:14px 18px}
+.mes h4{font-size:12px;font-weight:600;margin-bottom:6px;color:var(--tx)}
+.mes.act h4{color:var(--g)}
+.mes table{border-collapse:collapse;width:100%;font-size:11px;font-variant-numeric:tabular-nums}
+.mes th{font-weight:500;color:var(--tx3);padding:2px 0;text-align:center}
+.mes td{text-align:center;padding:0;height:21px;color:var(--tx2)}
+.mes td.n{color:var(--tx3);font-family:'JetBrains Mono',monospace;font-size:10px;width:20px;border-right:1px solid var(--line)}
+.cal.wm .mes td.n{color:var(--g);opacity:.8}
+.mes td.d{cursor:pointer;border-radius:6px}
+.mes td.d:hover{background:var(--s2);color:var(--tx)}
+.mes td.fin{color:var(--tx3)}
+.mes tr.semhoy td.d{background:rgba(0,255,136,.06)}
+.mes td.hoyd{background:var(--grad)!important;color:#04120B;font-weight:700}
+.mes td.sel{outline:1.5px solid var(--c);outline-offset:-1.5px;color:var(--tx)}
+.cal-ft{padding:10px 16px 12px;border-top:1px solid var(--line);font-size:12.5px;color:var(--tx2);display:flex;flex-wrap:wrap;gap:6px 18px;align-items:center}
+.cal-ft b{color:var(--tx);font-weight:600}
+.cal-ft .wm{color:var(--g);font-family:'JetBrains Mono',monospace}
+.cal-escudo{position:fixed;inset:0;z-index:59;display:none}
+.cal.arr ~ .cal-escudo{display:block}
+@media (max-width:1100px){.cal-bd{grid-template-columns:repeat(3,1fr)}}
+@media (max-width:640px){
+  .cal-movil{display:inline-flex}
+  #calRail{display:none}
+  .cal{left:0!important;top:0!important;width:100vw;height:100dvh;max-height:none;border-radius:0;border:0}
+  .cal-hd{cursor:default;padding-top:calc(10px + var(--safe-t));flex-wrap:wrap}
+  .seg{margin-left:0}
+  .cal-bd{grid-template-columns:1fr 1fr;gap:14px}
+  .cal-ft{padding-bottom:calc(12px + var(--safe-b))}
+}
 
 /* Instalar */
 .inst{display:none}
@@ -155,11 +209,12 @@ svg.i.sm{width:18px;height:18px}
 
 <div class="shell">
   <aside class="rail" aria-label="Aplicaciones">
-    <button class="brand" onclick="go('')" aria-label="Inicio · Rinze Studio" title="Rinze Studio"><svg viewBox="62 42 216 266" aria-hidden="true"><use href="#rinzeMark"/></svg></button>
+    <button class="brand" onclick="go('')" aria-label="Inicio · Rinze Studio" title="Rinze Studio"><span id="logoRail"></span></button>
     <button class="item" id="nav-home" onclick="go('')"></button>
     <div class="sep"></div>
     <nav class="nav-list" id="navList"></nav>
     <div class="rail-foot">
+      <button class="item" id="calRail" onclick="calAlternar()" title="Calendario (Alt+C)"></button>
       <button class="item inst" id="instRail" onclick="instalar()"></button>
       <span class="ver" id="ver"></span>
     </div>
@@ -174,6 +229,12 @@ svg.i.sm{width:18px;height:18px}
   </main>
 </div>
 <nav class="bottom" id="bottom" aria-label="Aplicaciones"></nav>
+<section class="cal" id="cal" role="dialog" aria-label="Calendario" aria-modal="false">
+  <header class="cal-hd" id="calHd"></header>
+  <div class="cal-bd" id="calBd"></div>
+  <footer class="cal-ft" id="calFt"></footer>
+</section>
+<div class="cal-escudo"></div>
 <div class="sheet" id="sheet" onclick="if(event.target===this)cerrarSheet()">
   <div class="pan" role="dialog" aria-modal="true" aria-labelledby="sheetT">
     <h3 id="sheetT">Instalar el Centro de Control</h3>
@@ -183,7 +244,7 @@ svg.i.sm{width:18px;height:18px}
 </div>
 
 <script>
-const VERSION = 'V.6';
+const VERSION = 'V.7';
 
 /* Copia de respaldo del registro. La fuente principal es apps.json. */
 const RESPALDO = [
@@ -209,6 +270,10 @@ const ICONOS = {
   recargar:'<path d="M20 11a8 8 0 1 0-2.3 5.7"/><path d="M20 4v7h-7"/>',
   aparte:'<path d="M14 4h6v6"/><path d="M20 4l-9 9"/><path d="M18 14v5a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V7a1 1 0 0 1 1-1h5"/>',
   mas:'<path d="M12 5v14M5 12h14"/>',
+  calendario:'<rect x="3" y="5" width="18" height="16" rx="2"/><path d="M3 10h18M8 3v4M16 3v4"/><path d="M7.5 14h2M11 14h2M14.5 14h2M7.5 17.5h2M11 17.5h2"/>',
+  cerrar:'<path d="M6 6l12 12M18 6L6 18"/>',
+  izq:'<path d="M15 6l-6 6 6 6"/>',
+  der:'<path d="M9 6l6 6-6 6"/>',
   instalar:'<path d="M12 4v11"/><path d="M7 10l5 5 5-5"/><path d="M5 20h14"/>',
   info:'<circle cx="12" cy="12" r="9"/><path d="M12 11v5M12 8h.01"/>'
 };
@@ -241,6 +306,7 @@ function pintarNav(){
     `<button data-id="" onclick="go('')">${ico('inicio')}<span class="lbl">Inicio</span></button>` +
     APPS.map(a => `<button data-id="${esc(a.id)}" onclick="go('${esc(a.id)}')">${ico(a.icono)}<span class="lbl">${esc(a.corto || a.nombre)}</span></button>`).join('');
   document.getElementById('ver').textContent = VERSION;
+  document.getElementById('logoRail').outerHTML = LOGO;
 }
 
 function saludo(){
@@ -254,6 +320,7 @@ function pintarInicio(){
     <div class="hello">${saludo()}, Kurt · ${esc(fecha.charAt(0).toUpperCase()+fecha.slice(1))}</div>
     <h2>Centro de <em>Control</em></h2>
     <p class="sub">Todas las aplicaciones de la panadería en un solo lugar. Cada una se abre aquí adentro y sigue abierta mientras cambias de una a otra.</p>
+    <button class="hoy" onclick="calAbrir()">${hoyResumen()}</button>
     <div class="grid">
       ${APPS.map(a => `
         <button class="card" onclick="go('${esc(a.id)}')">
@@ -272,19 +339,20 @@ function pintarInicio(){
       </div>
     </div>
     <div class="tip">${ico('info','i sm')}<span>Si una app no carga dentro del centro, usa «Abrir aparte» en la barra superior.</span></div>
-    <div class="firma" aria-label="Rinze Studio">${LOGO}</div>`;
+`;
 }
 
 function pintarTopbar(){
   const tb = document.getElementById('topbar');
   const a = APPS.find(x => x.id === actual);
   if (!a){
-    tb.innerHTML = `<div class="ttl"><h1>Inicio</h1></div><div class="acts" style="align-items:center;gap:10px"><button class="btn pri inst${puedeInstalar() ? ' show' : ''}" onclick="instalar()">${ico('instalar','i sm')}<span class="t">Instalar app</span></button><span class="ver">${VERSION}</span></div>`;
+    tb.innerHTML = `<div class="ttl"><h1>Inicio</h1></div><div class="acts" style="align-items:center;gap:10px"><button class="btn cal-movil" onclick="calAlternar()" title="Calendario">${ico('calendario','i sm')}</button><button class="btn pri inst${puedeInstalar() ? ' show' : ''}" onclick="instalar()">${ico('instalar','i sm')}<span class="t">Instalar app</span></button><span class="ver">${VERSION}</span></div>`;
     return;
   }
   tb.innerHTML = `
     <div class="ttl">${ico(a.icono)}<div style="min-width:0"><h1>${esc(a.nombre)}</h1><div class="host">${esc(hostDe(a.url))}</div></div></div>
     <div class="acts">
+      <button class="btn cal-movil" onclick="calAlternar()" title="Calendario">${ico('calendario','i sm')}</button>
       <button class="btn" onclick="recargar()" title="Recargar">${ico('recargar','i sm')}<span class="t">Recargar</span></button>
       <a class="btn" href="${esc(a.url)}" target="_blank" rel="noopener" title="Abrir aparte">${ico('aparte','i sm')}<span class="t">Abrir aparte</span></a>
       <button class="btn pri" onclick="go('')" title="Inicio">${ico('inicio','i sm')}<span class="t">Inicio</span></button>
@@ -355,6 +423,158 @@ function leerHash(){
   mostrar();
 }
 
+/* ---------- Calendario: semanas normales y semanas Walmart ----------
+   Semana normal: ISO 8601, de lunes a domingo; la semana 1 es la que tiene
+   el primer jueves del año.
+   Semana Walmart: de sábado a viernes. El año fiscal arranca el sábado más
+   cercano al 1 de febrero, y la semana se escribe año + número (202643),
+   igual que en la Agenda. */
+const DIA = 864e5;
+const MESES = ['enero','febrero','marzo','abril','mayo','junio','julio','agosto','septiembre','octubre','noviembre','diciembre'];
+const DIAS = ['domingo','lunes','martes','miércoles','jueves','viernes','sábado'];
+const fecha = (y, m, d) => new Date(y, m, d, 12);
+const sumar = (f, n) => new Date(f.getTime() + n * DIA);
+const igual = (a, b) => a.getFullYear() === b.getFullYear() && a.getMonth() === b.getMonth() && a.getDate() === b.getDate();
+const corta = f => f.getDate() + ' ' + MESES[f.getMonth()].slice(0, 3);
+function semISO(f){
+  const d = new Date(Date.UTC(f.getFullYear(), f.getMonth(), f.getDate()));
+  d.setUTCDate(d.getUTCDate() - ((d.getUTCDay() + 6) % 7) + 3);   // jueves de esa semana
+  const y = d.getUTCFullYear(), e = new Date(Date.UTC(y, 0, 4));
+  return { y, w: 1 + Math.round(((d - e) / DIA - 3 + ((e.getUTCDay() + 6) % 7)) / 7) };
+}
+function inicioWM(y){
+  const f = fecha(y, 1, 1);
+  let d = 6 - f.getDay(); if (d > 3) d -= 7;
+  return sumar(f, d);
+}
+function semWM(f){
+  let y = f.getFullYear();
+  if (f < inicioWM(y)) y--;
+  const w = Math.floor(Math.round((f - inicioWM(y)) / DIA) / 7) + 1;
+  return { y, w, cod: String(y) + String(w).padStart(2, '0') };
+}
+const lunesDe = f => sumar(f, -((f.getDay() + 6) % 7));
+const sabadoDe = f => sumar(f, -((f.getDay() + 1) % 7));
+
+function hoyResumen(){
+  const h = new Date(); const n = semISO(h), w = semWM(h), s = sabadoDe(h);
+  return `${ico('calendario','i sm')}<span>Semana <b>${n.w}</b></span><span class="sepv"></span><span>Semana Walmart <span class="wm">${w.cod}</span> · ${corta(s)} – ${corta(sumar(s, 6))}</span><span class="ver-cal">Ver calendario</span>`;
+}
+
+const cal = { y: new Date().getFullYear(), modo: 'normal', sel: null };
+try { const g = JSON.parse(leer('cal') || '{}'); if (g.modo === 'walmart') cal.modo = 'walmart'; cal.pos = g.pos; } catch {}
+const guardarCal = () => guardar('cal', JSON.stringify({ modo: cal.modo, pos: cal.pos }));
+
+function pintarCal(){
+  const el = document.getElementById('cal');
+  el.classList.toggle('wm', cal.modo === 'walmart');
+  document.getElementById('calHd').innerHTML = `
+    <span class="tt">${ico('calendario','i sm')}Calendario</span>
+    <span class="cal-yr"><button class="ib" data-c="ant" aria-label="Año anterior">${ico('izq','i sm')}</button><b>${cal.y}</b><button class="ib" data-c="sig" aria-label="Año siguiente">${ico('der','i sm')}</button></span>
+    <span class="seg" role="tablist"><button data-c="normal" class="${cal.modo === 'normal' ? 'on' : ''}">Semana normal</button><button data-c="walmart" class="w ${cal.modo === 'walmart' ? 'on' : ''}">Semana Walmart</button></span>
+    <button class="cal-hoy" data-c="hoy">Hoy</button>
+    <button class="ib" data-c="cerrar" aria-label="Cerrar">${ico('cerrar','i sm')}</button>`;
+  const hoy = new Date();
+  const wm = cal.modo === 'walmart';
+  const cab = (wm ? ['S','D','L','M','M','J','V'] : ['L','M','M','J','V','S','D']);
+  let h = '';
+  for (let m = 0; m < 12; m++){
+    const p = fecha(cal.y, m, 1), u = fecha(cal.y, m + 1, 0);
+    let f = wm ? sabadoDe(p) : lunesDe(p);
+    let filas = '';
+    while (f <= u){
+      const num = wm ? semWM(f).w : semISO(f).w;
+      const esHoy = hoy >= f && hoy < sumar(f, 7);
+      let c = `<td class="n">${num}</td>`;
+      for (let i = 0; i < 7; i++){
+        const d = sumar(f, i);
+        if (d.getMonth() !== m) { c += '<td></td>'; continue; }
+        const cls = ['d'];
+        if (d.getDay() === 0 || d.getDay() === 6) cls.push('fin');
+        if (igual(d, hoy)) cls.push('hoyd');
+        if (cal.sel && igual(d, cal.sel)) cls.push('sel');
+        c += `<td class="${cls.join(' ')}" data-f="${d.getFullYear()}-${d.getMonth()}-${d.getDate()}">${d.getDate()}</td>`;
+      }
+      filas += `<tr class="${esHoy ? 'semhoy' : ''}">${c}</tr>`;
+      f = sumar(f, 7);
+    }
+    const act = hoy.getFullYear() === cal.y && hoy.getMonth() === m;
+    h += `<div class="mes${act ? ' act' : ''}" id="mes${m}"><h4>${MESES[m][0].toUpperCase() + MESES[m].slice(1)}</h4><table><tr><th>${wm ? 'WM' : 'Sem'}</th>${cab.map(x => `<th>${x}</th>`).join('')}</tr>${filas}</table></div>`;
+  }
+  document.getElementById('calBd').innerHTML = h;
+  const d = cal.sel || hoy;
+  const n = semISO(d), w = semWM(d), l = lunesDe(d), s = sabadoDe(d);
+  document.getElementById('calFt').innerHTML = `
+    <span><b>${DIAS[d.getDay()][0].toUpperCase() + DIAS[d.getDay()].slice(1)} ${d.getDate()} de ${MESES[d.getMonth()]} ${d.getFullYear()}</b></span>
+    <span>Semana <b>${n.w}</b> · ${corta(l)} – ${corta(sumar(l, 6))}</span>
+    <span>Semana Walmart <span class="wm">${w.cod}</span> · ${corta(s)} – ${corta(sumar(s, 6))}</span>`;
+}
+function calPosicionar(){
+  const el = document.getElementById('cal');
+  if (innerWidth <= 640) return;
+  const w = el.offsetWidth, h = el.offsetHeight;
+  let x = cal.pos ? cal.pos.x : innerWidth - w - 24;
+  let y = cal.pos ? cal.pos.y : 72;
+  x = Math.max(8, Math.min(x, innerWidth - w - 8));
+  y = Math.max(8, Math.min(y, innerHeight - 60));
+  el.style.left = x + 'px'; el.style.top = y + 'px';
+}
+function calAbrir(){
+  const el = document.getElementById('cal');
+  el.classList.add('show');
+  pintarCal(); calPosicionar();
+  const hoy = new Date();
+  if (cal.y === hoy.getFullYear()) document.getElementById('mes' + hoy.getMonth())?.scrollIntoView({ block: 'nearest' });
+}
+function calCerrar(){ document.getElementById('cal').classList.remove('show'); }
+function calAlternar(){ document.getElementById('cal').classList.contains('show') ? calCerrar() : calAbrir(); }
+
+document.addEventListener('click', e => {
+  const el = document.getElementById('cal');
+  if (!el.contains(e.target)) return;
+  const b = e.target.closest('[data-c]');
+  if (b){
+    const c = b.dataset.c;
+    if (c === 'ant') cal.y--;
+    else if (c === 'sig') cal.y++;
+    else if (c === 'normal' || c === 'walmart') { cal.modo = c; guardarCal(); }
+    else if (c === 'hoy') { cal.y = new Date().getFullYear(); cal.sel = null; }
+    else if (c === 'cerrar') { calCerrar(); return; }
+    pintarCal();
+    if (c === 'hoy') document.getElementById('mes' + new Date().getMonth())?.scrollIntoView({ block: 'nearest', behavior: 'smooth' });
+    return;
+  }
+  const td = e.target.closest('td.d');
+  if (td){ const [y, m, d] = td.dataset.f.split('-').map(Number); cal.sel = fecha(y, m, d); pintarCal(); }
+});
+document.addEventListener('keydown', e => {
+  if (e.key === 'Escape') calCerrar();
+  if (e.altKey && (e.key === 'c' || e.key === 'C')) { e.preventDefault(); calAlternar(); }
+});
+/* Mover la ventana arrastrando su barra. Mientras se arrastra, un escudo
+   transparente tapa las apps embebidas para que no se queden con el puntero. */
+(function arrastre(){
+  let ini = null;
+  const el = () => document.getElementById('cal');
+  document.addEventListener('pointerdown', e => {
+    const hd = e.target.closest('#calHd');
+    if (!hd || e.target.closest('button') || innerWidth <= 640) return;
+    const r = el().getBoundingClientRect();
+    ini = { dx: e.clientX - r.left, dy: e.clientY - r.top };
+    el().classList.add('arr');
+    hd.setPointerCapture(e.pointerId);
+  });
+  document.addEventListener('pointermove', e => {
+    if (!ini) return;
+    cal.pos = { x: e.clientX - ini.dx, y: e.clientY - ini.dy };
+    calPosicionar();
+  });
+  const fin = () => { if (!ini) return; ini = null; el().classList.remove('arr'); guardarCal(); };
+  document.addEventListener('pointerup', fin);
+  document.addEventListener('pointercancel', fin);
+  addEventListener('resize', () => { if (el().classList.contains('show')) calPosicionar(); });
+})();
+
 /* ---------- Instalar como app ---------- */
 let promptInstalar = null;
 const instalada = () => matchMedia('(display-mode: standalone)').matches || navigator.standalone === true;
@@ -363,6 +583,7 @@ const puedeInstalar = () => !instalada() && (!!promptInstalar || esIOS());
 function pintarInstalar(){
   const r = document.getElementById('instRail');
   r.innerHTML = ico('instalar') + '<span class="lbl">Instalar</span>';
+  document.getElementById('calRail').innerHTML = ico('calendario') + '<span class="lbl">Calendario</span>';
   document.querySelectorAll('.inst').forEach(b => b.classList.toggle('show', puedeInstalar()));
 }
 async function instalar(){
