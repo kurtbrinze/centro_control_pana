@@ -1,19 +1,20 @@
 {
-  "_ayuda": "Para agregar una app, copia un bloque y cambia sus datos. corto: nombre breve para la barra del celular. icono: produccion | entregas | desviaciones | agenda | inventario | documento | camara | grafica | caja. modo: embebida (dentro del centro) o pestana (se abre aparte). Las apps que necesitan elegir carpetas (Entregas a CEDI, Desviaciones) se sirven desde el mismo sitio del centro, en /apps/..., con una regla en vercel.json; 'original' guarda su dirección real.",
+  "_ayuda": "Para agregar una app, copia un bloque y cambia sus datos. corto: nombre breve para la barra del celular. icono: produccion | entregas | desviaciones | agenda | inventario | documento | camara | grafica | caja. modo: embebida (dentro del centro) o pestana (se abre aparte). Las apps que necesitan elegir carpetas (Control Producción, Entregas a CEDI, Desviaciones) se sirven desde el mismo sitio del centro, en /apps/..., con una regla en vercel.json; 'original' guarda su dirección real.",
   "apps": [
     {
       "id": "produccion",
       "nombre": "Control Producción",
       "corto": "Producción",
       "descripcion": "Cálculo y control de la producción diaria.",
-      "url": "https://calculoproduccion.vercel.app",
+      "url": "/apps/produccion/",
       "icono": "produccion",
       "dispositivos": [
         "Laptop",
         "Tablet"
       ],
       "hosting": "Vercel",
-      "modo": "embebida"
+      "modo": "embebida",
+      "original": "https://calculoproduccion.vercel.app"
     },
     {
       "id": "entregas",

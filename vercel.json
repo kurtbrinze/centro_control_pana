@@ -34,6 +34,11 @@
   ],
   "redirects": [
     {
+      "source": "/apps/produccion",
+      "destination": "/apps/produccion/",
+      "permanent": false
+    },
+    {
       "source": "/apps/cd",
       "destination": "/apps/cd/",
       "permanent": false
@@ -45,6 +50,14 @@
     }
   ],
   "rewrites": [
+    {
+      "source": "/apps/produccion/",
+      "destination": "https://calculoproduccion.vercel.app/"
+    },
+    {
+      "source": "/apps/produccion/:path+",
+      "destination": "https://calculoproduccion.vercel.app/:path+"
+    },
     {
       "source": "/apps/cd/",
       "destination": "https://kurtbrinze.github.io/CD/"

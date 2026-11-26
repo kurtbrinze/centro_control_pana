@@ -8,7 +8,7 @@ Funciona en laptop, tablet y celular, y se puede instalar como app. Estilo Rinze
 
 | App | Dónde vive |
 |---|---|
-| Control Producción | https://calculoproduccion.vercel.app |
+| Control Producción | https://calculoproduccion.vercel.app (en el centro: `/apps/produccion/`) |
 | Entregas a CEDI | https://kurtbrinze.github.io/CD/ (en el centro: `/apps/cd/`) |
 | Agenda | https://agenda-chi-wheat.vercel.app/ |
 | Desviaciones | https://kurtbrinze.github.io/Desviaciones/ (en el centro: `/apps/desviaciones/`) |
@@ -40,12 +40,13 @@ Al guardar en GitHub, Vercel publica el cambio solo.
 ## Apps que eligen carpetas
 
 Chrome no deja que una app embebida desde otro sitio abra el selector de
-carpetas (`showDirectoryPicker`). Por eso Entregas a CEDI y Desviaciones se
-sirven desde el mismo sitio del centro: `vercel.json` reenvía `/apps/cd/` y
-`/apps/desviaciones/` a GitHub Pages. Siguen publicándose en GitHub como
-siempre; el centro sólo las muestra desde su propia dirección.
+carpetas (`showDirectoryPicker`). Por eso Control Producción, Entregas a CEDI
+y Desviaciones se sirven desde el mismo sitio del centro: `vercel.json` reenvía
+`/apps/produccion/` a Vercel y `/apps/cd/` y `/apps/desviaciones/` a GitHub
+Pages. Siguen publicándose como siempre; el centro sólo las muestra desde su
+propia dirección.
 
-Para estas dos apps, los vínculos a carpetas y archivos se guardan en el
+Para estas apps, los vínculos a carpetas y archivos se guardan en el
 navegador por sitio: los que hagas dentro del centro son distintos de los de
 la app abierta en github.io. Si Entregas usa Gmail, en Google Cloud hay que
 agregar `https://centrocontrolpana.vercel.app` como origen autorizado.
@@ -76,6 +77,7 @@ una línea muestra las semanas de hoy.
 
 La versión visible está en `index.html` (`VERSION`). Cada actualización la sube.
 
+- **V.9** — Control Producción también se sirve desde el sitio del centro, para elegir la carpeta de archivos.
 - **V.8** — La luz verde del menú se enciende sólo en la app que está en pantalla.
 - **V.7** — Calendario flotante con semanas normales y Walmart; línea «Hoy» en el inicio; logo completo de Rinze Studio arriba a la izquierda (se quita el del pie del inicio).
 - **V.6** — Entregas a CEDI y Desviaciones se sirven desde el mismo sitio del centro para que puedan elegir carpetas.
