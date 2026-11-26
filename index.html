@@ -67,22 +67,59 @@ svg.i.sm{width:18px;height:18px}
 .home h2{font-size:clamp(26px,3.4vw,36px);font-weight:700;letter-spacing:-.02em;margin:6px 0 6px}
 .home h2 em{font-style:normal;background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent}
 .home .sub{color:var(--tx2);font-size:14px;max-width:560px;line-height:1.6}
-.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:16px;margin-top:28px;max-width:1200px}
-.card{background:var(--s1);border:1px solid var(--line);border-radius:16px;padding:20px;display:flex;flex-direction:column;gap:14px;text-align:left;transition:border-color .2s,transform .2s,background .2s;min-height:200px}
-.card:hover{border-color:rgba(0,255,136,.45);transform:translateY(-2px);background:#141B29}
-.card .ic{width:48px;height:48px;border-radius:12px;display:grid;place-items:center;background:var(--s2);border:1px solid var(--line2)}
-.card .ic svg.i{stroke:url(#gr)}
-.card h3{font-size:16px;font-weight:600}
-.card p{font-size:13px;color:var(--tx2);line-height:1.55;margin-top:4px}
-.card .body{flex:1;display:flex;flex-direction:column;gap:14px;width:100%}
-.chips{display:flex;flex-wrap:wrap;gap:6px;margin-top:auto}
-.chip{font-size:11px;font-weight:500;padding:4px 9px;border-radius:999px;background:var(--s2);color:var(--tx2);border:1px solid var(--line)}
-.chip.h{color:var(--c);border-color:rgba(0,210,254,.3)}
-.card.add{border-style:dashed;background:transparent;align-items:flex-start;justify-content:center;cursor:default}
-.card.add:hover{transform:none;border-color:var(--line2)}
-.card.add .ic svg.i{stroke:var(--tx3)}
-.card.add code{font-family:'JetBrains Mono',monospace;font-size:12px;color:var(--g)}
-.tip{margin-top:28px;max-width:1200px;font-size:12px;color:var(--tx3);display:flex;gap:8px;align-items:center}
+.home{display:flex;flex-direction:column;padding-bottom:0}
+.home > .hoy{align-self:flex-start}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,440px),1fr));gap:16px;margin-top:26px;max-width:1280px;align-items:start}
+.card{background:var(--s1);border:1px solid var(--line);border-radius:16px;padding:18px 18px 16px;display:flex;flex-direction:column;gap:14px;min-width:0}
+.c-hd{display:flex;align-items:center;gap:12px}
+.c-ic{width:44px;height:44px;flex:none;border-radius:12px;display:grid;place-items:center;background:var(--s2);border:1px solid var(--line2);transition:border-color .2s,transform .2s}
+.c-ic svg.i{stroke:url(#gr)}
+.c-ic:hover{border-color:var(--g);transform:translateY(-1px)}
+.c-tt{display:flex;flex-direction:column;align-items:flex-start;min-width:0;text-align:left}
+.c-tt b{font-size:15.5px;font-weight:600;color:var(--tx)}
+.c-tt:hover b{color:var(--g)}
+.c-tt span{font-size:11.5px;color:var(--tx3);margin-top:2px}
+.c-tt span.viejo{color:#f5b301}
+.c-ir{margin-left:auto;font-size:12px;font-weight:500;color:var(--c);padding:6px 8px;border-radius:8px;white-space:nowrap}
+.c-ir:hover{background:var(--s2)}
+.c-bd{display:flex;flex-direction:column;gap:12px;font-size:13px;color:var(--tx2);min-width:0}
+.c-vacio{padding:14px;border:1px dashed var(--line2);border-radius:12px;color:var(--tx3);font-size:12.5px;line-height:1.5}
+.c-vacio b{color:var(--tx2);font-weight:500}
+.dia-lbl{font-size:11px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--tx3);display:flex;align-items:center;gap:8px}
+.dia-lbl .pill{letter-spacing:0;text-transform:none}
+.pill{display:inline-flex;align-items:center;gap:5px;font-size:11px;font-weight:600;padding:2px 8px;border-radius:999px;border:1px solid var(--line2);color:var(--tx2);background:var(--bg);white-space:nowrap}
+.pill.g{color:var(--g);border-color:rgba(0,255,136,.35)}
+.pill.c{color:var(--c);border-color:rgba(0,210,254,.35)}
+.pill.a{color:#f5b301;border-color:rgba(245,179,1,.4)}
+.pill.r{color:#ff6b6b;border-color:rgba(255,107,107,.45)}
+.big{display:flex;gap:10px;flex-wrap:wrap}
+.big > div{flex:1 1 120px;background:var(--bg);border:1px solid var(--line);border-radius:12px;padding:10px 12px;min-width:0}
+.big small{display:block;font-size:11px;color:var(--tx3);font-weight:500}
+.big strong{display:block;font-size:20px;font-weight:700;color:var(--tx);margin-top:2px;font-variant-numeric:tabular-nums}
+.big strong em{font-style:normal;font-size:12px;font-weight:500;color:var(--tx3);margin-left:3px}
+.big .lin{font-size:11.5px;color:var(--tx3);margin-top:3px}
+.lst{display:flex;flex-direction:column;gap:6px}
+.lst .f{display:flex;gap:10px;align-items:baseline;min-width:0}
+.lst .f .k{color:var(--tx);font-weight:500;white-space:nowrap}
+.lst .f .v{min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.lst .f .n{margin-left:auto;color:var(--tx);font-weight:600;font-variant-numeric:tabular-nums;white-space:nowrap}
+.tur{display:flex;flex-wrap:wrap;gap:4px 12px;font-size:12.5px}
+.tur span b{color:var(--tx);font-weight:600;font-variant-numeric:tabular-nums}
+.tur span.pm{color:var(--tx3)}
+details.cl summary{cursor:pointer;font-size:12px;color:var(--c);list-style:none;display:inline-flex;gap:6px;align-items:center}
+details.cl summary::-webkit-details-marker{display:none}
+details.cl summary::before{content:'›';display:inline-block;transition:transform .2s}
+details.cl[open] summary::before{transform:rotate(90deg)}
+details.cl .cls{margin-top:8px;display:flex;flex-direction:column;gap:6px;font-size:12px}
+details.cl .cls b{color:var(--tx);font-weight:500}
+.mini{font-size:12px;color:var(--tx3);display:flex;flex-wrap:wrap;gap:4px 14px}
+.mini b{color:var(--tx2);font-weight:600}
+.home-pie{position:sticky;bottom:0;margin-top:auto;display:flex;align-items:center;gap:16px;padding:22px 0 18px;background:linear-gradient(to top,var(--bg) 70%,rgba(10,14,23,0))}
+.tip{font-size:11.5px;color:var(--tx3);display:flex;gap:8px;align-items:center;margin-right:auto}
+.btn-add{display:inline-flex;align-items:center;gap:8px;height:40px;padding:0 16px;border-radius:12px;border:1px solid var(--line2);background:var(--s1);color:var(--tx);font-size:13px;font-weight:500;transition:border-color .2s}
+.btn-add svg.i{stroke:url(#gr)}
+.btn-add:hover{border-color:var(--g)}
+.sheet code{font-family:'JetBrains Mono',monospace;font-size:12px;color:var(--g)}
 
 /* Apps embebidas */
 .frames{position:absolute;inset:0}
@@ -178,10 +215,9 @@ svg.i.sm{width:18px;height:18px}
   .topbar .btn{padding:0 10px}
   .home{padding:24px 16px 32px}
   .grid{grid-template-columns:1fr;gap:12px;margin-top:20px}
-  .card{min-height:0;flex-direction:row;align-items:flex-start;padding:16px;gap:14px}
-  .card .body{flex:1;min-width:0;display:flex;flex-direction:column;gap:10px}
-  .card .chips{margin-top:0}
-  .card.add{flex-direction:row;align-items:center}
+  .card{padding:16px}
+  .home-pie{position:static;background:none;flex-direction:column-reverse;align-items:stretch;gap:10px;padding:20px 0 14px}
+  .btn-add{justify-content:center}
   .bottom{display:flex;position:fixed;left:0;right:0;bottom:0;height:calc(var(--nav) + var(--safe-b));padding-bottom:var(--safe-b);background:var(--s1);border-top:1px solid var(--line);overflow-x:auto;z-index:30}
   .bottom button{flex:1 0 72px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:4px;font-size:10.5px;font-weight:500;color:var(--tx3);position:relative}
   .bottom button.on{color:var(--tx)}
@@ -244,13 +280,13 @@ svg.i.sm{width:18px;height:18px}
 </div>
 
 <script>
-const VERSION = 'V.10';
+const VERSION = 'V.11';
 
 /* Copia de respaldo del registro. La fuente principal es apps.json. */
 const RESPALDO = [
   {id:'produccion',nombre:'Control Producción',corto:'Producción',descripcion:'Cálculo y control de la producción diaria.',url:'/apps/produccion/',icono:'produccion',dispositivos:['Laptop','Tablet'],hosting:'Vercel',modo:'embebida'},
   {id:'entregas',nombre:'Entregas a CEDI',corto:'Entregas',descripcion:'Formularios, órdenes de compra, citas y QR para el CEDI.',url:'/apps/cd/',icono:'entregas',dispositivos:['Laptop'],hosting:'GitHub',modo:'embebida'},
-  {id:'agenda',nombre:'Agenda',corto:'Agenda',descripcion:'Citas, tareas y pendientes de la panadería.',url:'https://agenda-chi-wheat.vercel.app/',icono:'agenda',dispositivos:['Laptop','Celular'],hosting:'Vercel',modo:'embebida'},
+  {id:'agenda',nombre:'Agenda',corto:'Agenda',descripcion:'Citas, tareas y pendientes de la panadería.',url:'https://agenda-chi-wheat.vercel.app/',icono:'agenda',precargar:true,dispositivos:['Laptop','Celular'],hosting:'Vercel',modo:'embebida'},
   {id:'desviaciones',nombre:'Desviaciones',corto:'Desviaciones',descripcion:'Análisis de lo pedido contra lo entregado.',url:'/apps/desviaciones/',icono:'desviaciones',dispositivos:['Laptop'],hosting:'GitHub',modo:'embebida'}
 ];
 
@@ -319,27 +355,154 @@ function pintarInicio(){
   document.getElementById('home').innerHTML = `
     <div class="hello">${saludo()}, Kurt · ${esc(fecha.charAt(0).toUpperCase()+fecha.slice(1))}</div>
     <h2>Centro de <em>Control</em></h2>
-    <p class="sub">Todas las aplicaciones de la panadería en un solo lugar. Cada una se abre aquí adentro y sigue abierta mientras cambias de una a otra.</p>
     <button class="hoy" onclick="calAbrir()">${hoyResumen()}</button>
-    <div class="grid">
-      ${APPS.map(a => `
-        <button class="card" onclick="go('${esc(a.id)}')">
-          <div class="ic">${ico(a.icono)}</div>
-          <div class="body">
-            <div><h3>${esc(a.nombre)}</h3><p>${esc(a.descripcion)}</p></div>
-            <div class="chips">
-              ${(a.dispositivos||[]).map(d => `<span class="chip">${esc(d)}</span>`).join('')}
-              ${a.hosting ? `<span class="chip h">${esc(a.hosting)}</span>` : ''}
-            </div>
-          </div>
-        </button>`).join('')}
-      <div class="card add">
-        <div class="ic">${ico('mas')}</div>
-        <div class="body"><div><h3>Agregar aplicación</h3><p>Agrega un bloque en <code>apps.json</code> y aparecerá aquí y en el menú.</p></div></div>
-      </div>
-    </div>
-    <div class="tip">${ico('info','i sm')}<span>Si una app no carga dentro del centro, usa «Abrir aparte» en la barra superior.</span></div>
-`;
+    <div class="grid" id="tarjetas">${APPS.map(a => `<article class="card" id="card-${esc(a.id)}">${tarjeta(a)}</article>`).join('')}</div>
+    <div class="home-pie">
+      <div class="tip">${ico('info','i sm')}<span>Si una app no carga dentro del centro, usa «Abrir aparte» en la barra superior.</span></div>
+      <button class="btn-add" onclick="agregarApp()">${ico('mas','i sm')}Agregar aplicación</button>
+    </div>`;
+}
+
+/* ---------- Tarjetas con el resumen de cada app ----------
+   Cada app deja su resumen como { v, app, actualizado, datos }: las que el
+   centro sirve desde su propio sitio lo escriben en localStorage
+   (cc.insight.<id>); la Agenda, que vive en otro sitio, lo manda por
+   postMessage y el centro lo guarda igual. La tarjeta sólo lo muestra. */
+const leerInsight = id => { try { return JSON.parse(localStorage.getItem('cc.insight.' + id) || 'null'); } catch { return null; } };
+const DIAC = ['Dom','Lun','Mar','Mié','Jue','Vie','Sáb'];
+const isoF = iso => { const [y, m, d] = String(iso).split('-').map(Number); return fecha(y, m - 1, d); };
+const hoyISO = () => { const h = new Date(); return h.getFullYear() + '-' + String(h.getMonth() + 1).padStart(2, '0') + '-' + String(h.getDate()).padStart(2, '0'); };
+function diaTxt(iso){
+  const f = isoF(iso), dif = Math.round((f - isoF(hoyISO())) / DIA);
+  const base = DIAC[f.getDay()] + ' ' + String(f.getDate()).padStart(2, '0') + '/' + String(f.getMonth() + 1).padStart(2, '0');
+  return dif === 0 ? 'Hoy · ' + base : dif === 1 ? 'Mañana · ' + base : dif === -1 ? 'Ayer · ' + base : base;
+}
+function haceTxt(isoDT){
+  if (!isoDT) return { t: 'Sin datos todavía', viejo: true };
+  const d = new Date(isoDT), h = new Date();
+  const hm = d.toLocaleTimeString('es-GT', { hour: 'numeric', minute: '2-digit' });
+  const dias = Math.round((fecha(h.getFullYear(), h.getMonth(), h.getDate()) - fecha(d.getFullYear(), d.getMonth(), d.getDate())) / DIA);
+  return { t: 'Actualizado ' + (dias === 0 ? 'hoy ' + hm : dias === 1 ? 'ayer ' + hm : d.toLocaleDateString('es-GT', { day: 'numeric', month: 'short' })), viejo: dias > 0 };
+}
+const num = (v, d = 1) => v == null || !isFinite(v) ? '—' : Number(v).toLocaleString('es-GT', { maximumFractionDigits: d });
+const pctT = (v, d = 1) => v == null || !isFinite(v) ? '—' : num(v * 100, d) + '%';
+
+function tarjeta(a){
+  const ins = leerInsight(a.id);
+  const h = haceTxt(ins && ins.actualizado);
+  const cab = `<div class="c-hd">
+      <button class="c-ic" onclick="go('${esc(a.id)}')" aria-label="Abrir ${esc(a.nombre)}" title="Abrir ${esc(a.nombre)}">${ico(a.icono)}</button>
+      <button class="c-tt" onclick="go('${esc(a.id)}')"><b>${esc(a.nombre)}</b><span class="${h.viejo ? 'viejo' : ''}">${esc(h.t)}</span></button>
+      <button class="c-ir" onclick="go('${esc(a.id)}')">Abrir ›</button>
+    </div>`;
+  const r = RESUMENES[a.id];
+  let cuerpo;
+  try { cuerpo = ins && r ? r(ins.datos || {}) : vacio(a); } catch { cuerpo = vacio(a); }
+  return cab + `<div class="c-bd">${cuerpo}</div>`;
+}
+const vacio = a => `<div class="c-vacio">${esc(a.descripcion || '')}<br><b>Abre ${esc(a.nombre)} una vez desde el centro</b> y aquí aparecerá su resumen del día.</div>`;
+
+const RESUMENES = {
+  produccion(d){
+    const plantas = (d.plantas || []).filter(p => p.decidido > 0 || p.sugerido > 0);
+    if (!plantas.length) return `<div class="dia-lbl">${esc(diaTxt(d.fecha))}</div><div class="c-vacio">Todavía no hay producción decidida para este día.</div>`;
+    const tot = `<div class="big">${plantas.map(p => `<div><small>${esc(p.nombre)}</small><strong>${num(p.decidido || p.sugerido)}<em>QQ${p.decidido ? '' : ' sug.'}</em></strong>${p.tope ? `<div class="lin">de ${num(p.tope)} QQ de capacidad</div>` : ''}</div>`).join('')}</div>`;
+    const turnos = plantas.map(p => {
+      const ts = (p.turnos || []).filter(t => t.usado > 0);
+      if (!ts.length) return '';
+      return `<div class="lst"><div class="f"><span class="k">${esc(p.nombre)}</span></div><div class="tur">${ts.map(t => `<span class="${t.momento === 'PM' ? 'pm' : ''}">${esc(t.nombre)} <b>${num(t.usado, 2)}</b></span>`).join('')}</div></div>`;
+    }).join('');
+    const claves = plantas.flatMap(p => (p.turnos || []).filter(t => t.claves && t.claves.length).map(t => `<div><b>${esc(t.nombre)}:</b> ${t.claves.map(c => `${esc(c.clave)} ${num(c.qq, 2)}`).join(' · ')}</div>`)).join('');
+    return `<div class="dia-lbl">${esc(diaTxt(d.fecha))}<span class="pill g">${num(d.decidido)} QQ decididos</span>${d.faltantes ? `<span class="pill r">${d.faltantes} con faltante</span>` : ''}</div>${tot}${turnos}${claves ? `<details class="cl"><summary>Ver claves por turno</summary><div class="cls">${claves}</div></details>` : ''}`;
+  },
+  entregas(d){
+    if (d.estado === 'sin-vincular') return `<div class="c-vacio">Vinculá el <b>Control OC FBD POD</b> en el Inicio de Entregas para ver aquí las próximas entregas.</div>`;
+    if (d.estado !== 'ok') return `<div class="c-vacio">Entregas no pudo leer el Control OC. Ábrela y tocá ↻ en Próximas entregas.</div>`;
+    if (!(d.dias || []).length) return `<div class="c-vacio">No hay entregas próximas en el Control OC.</div>`;
+    const EST = { hoy: ['c', 'Hoy'], calculado: ['a', 'Calculado'], 'por-calcular': ['r', 'Por calcular'], 'sin-cita': ['', 'Sin cita'] };
+    const pend = d.dias.slice(0, 2).flatMap(x => x.entregas).filter(e => e.estado === 'por-calcular').length;
+    return (pend ? `<div class="dia-lbl"><span class="pill r">${pend} por calcular en los próximos días</span></div>` : '') + d.dias.map(x => `
+      <div class="lst"><div class="dia-lbl">${esc(diaTxt(x.fecha))}</div>
+      ${x.entregas.map(e => { const s = EST[e.estado] || ['', e.estado]; return `<div class="f"><span class="k">${esc(e.prov)}</span><span class="v">OC ${esc(e.oc)} · ${e.cita ? 'cita ' + esc(e.cita) : 'sin cita'}</span><span class="n"><span class="pill ${s[0]}">${esc(s[1])}</span></span></div>`; }).join('')}</div>`).join('');
+  },
+  agenda(d){
+    const [hoy, prox] = d.dias || [];
+    if (!hoy) return vacio(APPS.find(a => a.id === 'agenda'));
+    const bloque = (x, completo) => {
+      if (x.sinDespacho && !x.rutas.length) return `<div class="lst"><div class="dia-lbl">${esc(diaTxt(x.fecha))}<span class="pill">Sin despacho</span></div></div>`;
+      const rutas = completo ? x.rutas.map(r => `<div class="f"><span class="k">${esc(r.clientes || '—')}</span><span class="v">${r.camiones.map(c => esc(c.camion) + (c.chofer ? ' · ' + esc(c.chofer) : '') + (c.ayudantes.length ? ' + ' + esc(c.ayudantes.join(', ')) : '')).join(' / ')}</span>${r.parrillas ? `<span class="n">${esc(r.parrillas)} parr.</span>` : ''}</div>`).join('') : '';
+      const mini = [
+        `<span><b>${x.rutas.length}</b> ${x.rutas.length === 1 ? 'ruta' : 'rutas'}</span>`,
+        x.empaques.length ? `<span>Empaques: <b>${x.empaques.map(e => esc(e.prod) + ' ' + esc(e.cant)).join(', ')}</b></span>` : '',
+        `<span><b>${x.personal}</b> personas asignadas</span>`,
+        x.ausencias.length ? `<span>Ausencias: <b>${x.ausencias.map(a => esc(a.nombre) + ' (' + esc(a.tipo) + ')').join(', ')}</b></span>` : '',
+        x.reuniones.length ? `<span>Reuniones: <b>${x.reuniones.map(m => esc((m.hora ? m.hora + ' ' : '') + m.titulo)).join(', ')}</b></span>` : '',
+      ].filter(Boolean).join('');
+      const notas = completo && x.notas.length ? `<div class="mini">${x.notas.slice(0, 3).map(n => `<span>📝 ${esc(n)}</span>`).join('')}</div>` : '';
+      const nada = !x.rutas.length && !x.empaques.length && !x.reuniones.length && !x.notas.length;
+      return `<div class="lst"><div class="dia-lbl">${esc(diaTxt(x.fecha))}${x.feriado ? `<span class="pill a">${esc(x.feriado)}</span>` : ''}</div>${rutas}${nada ? `<div class="mini"><span>Sin rutas programadas${x.ausencias.length ? ' · ausencias: <b>' + x.ausencias.map(a => esc(a.nombre) + ' (' + esc(a.tipo) + ')').join(', ') + '</b>' : ''}</span></div>` : `<div class="mini">${mini}</div>`}${notas}</div>`;
+    };
+    return bloque(hoy, true) + (prox ? bloque(prox, false) : '');
+  },
+  desviaciones(d){
+    const fr = (d.fill || []).map(f => {
+      const bajo = f.valor != null && f.valor < f.objetivo;
+      const fl = f.valor != null && f.anterior != null ? (f.valor > f.anterior ? '▲' : f.valor < f.anterior ? '▼' : '') : '';
+      return `<div><small>Fill Rate ${esc(f.nombre)}</small><strong style="${bajo ? 'color:#ff6b6b' : ''}">${pctT(f.valor)}${fl ? `<em>${fl}</em>` : ''}</strong><div class="lin">objetivo ${pctT(f.objetivo, 0)}${f.anterior != null ? ' · antes ' + pctT(f.anterior) : ''}</div></div>`;
+    }).join('');
+    const al = d.alertas || { total: 0, top: [] };
+    const oc = d.ocManuales || { combinaciones: 0, unidades: 0 };
+    const top = (al.top || []).map(c => `<div class="f"><span class="pill ${c.estado === 'rojo' ? 'r' : 'a'}">${c.estado === 'rojo' ? 'Rojo' : 'Amarillo'}</span><span class="v">${esc(c.tienda)} ${esc(c.nombre)} · <b style="color:var(--tx);font-weight:500">${esc(c.clave)}</b></span><span class="n">${num(c.riesgo, 0)} u</span></div>`).join('');
+    const vf = d.ventaFcst && d.ventaFcst.fcst ? (d.ventaFcst.venta - d.ventaFcst.fcst) / d.ventaFcst.fcst : null;
+    const mini = [
+      d.ventaFcst ? `<span>Venta vs FCST sem ${esc(d.ventaFcst.semana)}: <b>${vf == null ? 'sin FCST' : (vf > 0 ? '+' : '') + pctT(vf)}</b></span>` : '',
+      d.evento ? `<span>Próximo evento: <b>${esc(d.evento.nombres.join(', '))}</b> sem ${esc(d.evento.semana)} (+${num(d.evento.pct * 100, 0)}%)</span>` : '',
+    ].filter(Boolean).join('');
+    return `<div class="dia-lbl">Semana Walmart ${esc(d.semana || '')}${d.frSemana ? ` · Fill Rate ${esc(d.frSemana)}` : ''}</div>
+      <div class="big">${fr}<div><small>OC manuales de refuerzo</small><strong>${num(oc.combinaciones, 0)}<em>comb.</em></strong><div class="lin">${num(oc.unidades, 0)} u en riesgo</div></div></div>
+      <div class="lst"><div class="dia-lbl">${num(al.total, 0)} con alerta<span class="pill r">${num(al.rojo, 0)} rojo</span><span class="pill a">${num(al.amarillo, 0)} amarillo</span></div>${top || '<div class="mini">Sin alertas.</div>'}</div>
+      ${mini ? `<div class="mini">${mini}</div>` : ''}`;
+  },
+};
+
+function repintarTarjeta(id){
+  const el = document.getElementById('card-' + id);
+  const a = APPS.find(x => x.id === id);
+  if (el && a) el.innerHTML = tarjeta(a);
+}
+/* Las apps del mismo sitio escriben en localStorage: el navegador avisa al
+   centro con 'storage'. La Agenda manda su resumen por postMessage. */
+addEventListener('storage', e => { const m = (e.key || '').match(/^cc\.insight\.(.+)$/); if (m) repintarTarjeta(m[1]); });
+addEventListener('message', e => {
+  const d = e.data;
+  if (!d || d.tipo !== 'cc:insight' || !d.id || !d.insight) return;
+  const a = APPS.find(x => x.id === d.id);
+  if (!a) return;
+  const permitido = e.origin === location.origin || (() => { try { return new URL(a.url, location.href).origin === e.origin; } catch { return false; } })();
+  if (!permitido) return;
+  if (new URL(a.url, location.href).origin !== location.origin) guardar('insight.' + d.id, JSON.stringify(d.insight));
+  repintarTarjeta(d.id);
+});
+/* Las apps marcadas con "precargar" se abren escondidas al arrancar, para
+   que su tarjeta tenga datos frescos sin tener que entrar. */
+function precargar(){
+  APPS.filter(a => a.precargar && a.modo !== 'pestana').forEach(a => {
+    const w = frames[a.id] || crearFrame(a);
+    const pedir = () => { try { w.querySelector('iframe').contentWindow.postMessage({ tipo: 'cc:resumen' }, '*'); } catch {} };
+    if (w.dataset.cargada) { avisarApp(w); pedir(); }
+    else w.querySelector('iframe').addEventListener('load', () => setTimeout(pedir, 1500), { once: true });
+  });
+}
+
+function agregarApp(){
+  document.getElementById('sheetT').textContent = 'Agregar una aplicación';
+  document.getElementById('sheetPasos').innerHTML = [
+    'Abre <b>apps.json</b> del centro en GitHub (repositorio <code>centro_control_pana</code>).',
+    'Copia un bloque de una app y cambia <b>id</b>, <b>nombre</b>, <b>url</b> e <b>icono</b>.',
+    'Guarda el cambio: Vercel lo publica solo y la app aparece aquí y en el menú.',
+    '¿Quieres que tenga tarjeta con resumen? Pídeselo a Claude: la app tiene que dejar su resumen como las demás.',
+  ].map(x => `<li>${x}</li>`).join('') + `<li style="list-style:none;margin-top:6px"><a class="btn pri" style="display:inline-flex" href="https://github.com/kurtbrinze/centro_control_pana/edit/main/apps.json" target="_blank" rel="noopener">${ico('aparte','i sm')}Abrir apps.json</a></li>`;
+  document.getElementById('sheet').classList.add('show');
 }
 
 function pintarTopbar(){
@@ -383,6 +546,8 @@ function crearFrame(a){
 function mostrar(){
   const a = APPS.find(x => x.id === actual);
   document.getElementById('home').style.display = a ? 'none' : '';
+  /* De vuelta en Inicio: tarjetas al día y la Agenda escondida trae lo último. */
+  if (!a && document.getElementById('tarjetas')) { APPS.forEach(x => repintarTarjeta(x.id)); precargar(); }
   Object.values(frames).forEach(w => w.classList.remove('on'));
   if (a){
     const w = frames[a.id] || crearFrame(a);
@@ -597,6 +762,7 @@ async function instalar(){
     : /Android/.test(navigator.userAgent)
       ? ['Abre el menú de tres puntos del navegador.', 'Elige <b>Instalar aplicación</b>.']
       : ['Busca el ícono de instalar en la barra de direcciones de Chrome o Edge.', 'O abre el menú del navegador y elige <b>Instalar Centro de Control</b>.'];
+  document.getElementById('sheetT').textContent = 'Instalar el Centro de Control';
   document.getElementById('sheetPasos').innerHTML = pasos.map(x => `<li>${x}</li>`).join('');
   document.getElementById('sheet').classList.add('show');
 }
@@ -621,6 +787,7 @@ if ('serviceWorker' in navigator && (location.protocol === 'https:' || location.
   history.replaceState(null, '', location.pathname + inicial);
   window.addEventListener('hashchange', leerHash);
   leerHash();
+  precargar();
 })();
 </script>
 </body>

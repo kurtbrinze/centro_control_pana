@@ -59,6 +59,23 @@ muestran un aviso para poner la clave de sincronización. Después de eso, cada
 vez que el centro vuelve a mostrar una app le manda el mensaje
 `{ tipo: 'cc:mostrar' }`, y la app trae lo último de Vercel Blob.
 
+## Tarjetas del inicio (resumen del día)
+
+Cada tarjeta muestra el resumen que deja su app, con la hora en que se
+actualizó. Las apps lo dejan como `{ v, app, actualizado, datos }`:
+
+| App | Cómo llega | Qué trae |
+|---|---|---|
+| Control Producción | `localStorage` `cc.insight.produccion` | QQ del día por planta y por turno, con claves |
+| Entregas a CEDI | `localStorage` `cc.insight.entregas` | Próximas entregas: proveedor, OC, cita y estado |
+| Agenda | `postMessage` (`cc:insight`), se guarda en `cc.insight.agenda` | Hoy y el próximo día: rutas, empaques, personal, ausencias, reuniones y notas |
+| Desviaciones | `localStorage` `cc.insight.desviaciones` | Fill Rate vs objetivo, alertas (top 3), OC manuales, venta vs FCST y próximo evento |
+
+Las tres primeras se sirven desde el sitio del centro, así que escriben
+directo; la Agenda vive en otro sitio y manda su resumen sólo a la dirección
+del centro. Con `"precargar": true` en `apps.json` la app se abre escondida al
+arrancar, para que su tarjeta tenga datos frescos (hoy: Agenda).
+
 ## Calendario
 
 Botón **Calendario** abajo a la izquierda (o Alt+C; en el celular, el ícono de
@@ -77,6 +94,7 @@ una línea muestra las semanas de hoy.
 
 La versión visible está en `index.html` (`VERSION`). Cada actualización la sube.
 
+- **V.11** — Tarjetas con el resumen del día de cada app (Producción por turno, próximas entregas, Agenda, Desviaciones); ícono y título abren la app; «Agregar aplicación» como botón abajo a la derecha y la nota al pie a la izquierda.
 - **V.10** — El centro siempre abre en Inicio (Chrome podía reabrirlo en la última app usada). Los accesos directos del ícono usan ?app=. La luz de Calendario e Instalar ya no se enciende en Inicio.
 - **V.9** — Control Producción también se sirve desde el sitio del centro, para elegir la carpeta de archivos.
 - **V.8** — La luz verde del menú se enciende sólo en la app que está en pantalla.
