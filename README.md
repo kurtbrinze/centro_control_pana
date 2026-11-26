@@ -76,6 +76,7 @@ una línea muestra las semanas de hoy.
 
 La versión visible está en `index.html` (`VERSION`). Cada actualización la sube.
 
+- **V.8** — La luz verde del menú se enciende sólo en la app que está en pantalla.
 - **V.7** — Calendario flotante con semanas normales y Walmart; línea «Hoy» en el inicio; logo completo de Rinze Studio arriba a la izquierda (se quita el del pie del inicio).
 - **V.6** — Entregas a CEDI y Desviaciones se sirven desde el mismo sitio del centro para que puedan elegir carpetas.
 - **V.5** — Ícono de la app instalada: rodaja de pan naranja sobre fondo oscuro. El logo de Rinze Studio sigue dentro del centro.

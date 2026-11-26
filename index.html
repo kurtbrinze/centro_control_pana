@@ -44,7 +44,7 @@ svg.i.sm{width:18px;height:18px}
 .item.on svg.i{stroke:url(#gr)}
 .item .lbl{font-size:10.5px;font-weight:500;line-height:1.2;max-width:70px;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
 .item .dot{position:absolute;top:7px;right:14px;width:6px;height:6px;border-radius:50%;background:var(--g);box-shadow:0 0 8px var(--g);opacity:0;transition:opacity .2s}
-.item.alive .dot{opacity:1}
+.item.on .dot{opacity:1}
 .rail-foot{margin-top:auto;padding-top:10px;display:flex;flex-direction:column;align-items:center;gap:8px}
 .ver{font-family:'JetBrains Mono',monospace;font-size:11px;padding:3px 8px;border-radius:6px;border:1px solid var(--line2);color:var(--g)}
 
@@ -244,7 +244,7 @@ svg.i.sm{width:18px;height:18px}
 </div>
 
 <script>
-const VERSION = 'V.7';
+const VERSION = 'V.8';
 
 /* Copia de respaldo del registro. La fuente principal es apps.json. */
 const RESPALDO = [
@@ -377,7 +377,6 @@ function crearFrame(a){
   f.src = a.url;
   document.getElementById('frames').appendChild(wrap);
   frames[a.id] = wrap;
-  document.querySelector(`.item[data-id="${CSS.escape(a.id)}"]`)?.classList.add('alive');
   return wrap;
 }
 
