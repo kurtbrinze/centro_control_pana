@@ -1,5 +1,5 @@
 {
-  "_ayuda": "Para agregar una app, copia un bloque y cambia sus datos. corto: nombre breve para la barra del celular. icono: produccion | entregas | desviaciones | agenda | inventario | documento | camara | grafica | caja. modo: embebida (dentro del centro) o pestana (se abre aparte). Las apps que necesitan elegir carpetas (Control Producción, Entregas a CEDI, Desviaciones) se sirven desde el mismo sitio del centro, en /apps/..., con una regla en vercel.json; 'original' guarda su dirección real. precargar: true abre la app escondida al arrancar el centro, para que su tarjeta tenga datos frescos.",
+  "_ayuda": "Para agregar una app, copia un bloque y cambia sus datos. corto: nombre breve para la barra del celular. icono: produccion | entregas | desviaciones | agenda | rutas | inventario | documento | camara | grafica | caja. modo: embebida (dentro del centro) o pestana (se abre aparte). Las apps que necesitan elegir carpetas (Control Producción, Entregas a CEDI, Desviaciones, Resumen Rutas) se sirven desde el mismo sitio del centro, en /apps/..., con una regla en vercel.json; 'original' guarda su dirección real. precargar: true abre la app escondida al arrancar el centro, para que su tarjeta tenga datos frescos.",
   "apps": [
     {
       "id": "produccion",
@@ -58,6 +58,20 @@
       "hosting": "GitHub",
       "modo": "embebida",
       "original": "https://kurtbrinze.github.io/Desviaciones/"
+    },
+    {
+      "id": "rutas",
+      "nombre": "Resumen Rutas Supermercados",
+      "corto": "Rutas Súper",
+      "descripcion": "Resumen AM/PM de rutas para WhatsApp, cadenas, cambios y verificación.",
+      "url": "/apps/rutas/",
+      "icono": "rutas",
+      "dispositivos": [
+        "Laptop"
+      ],
+      "hosting": "Vercel",
+      "modo": "embebida",
+      "original": "https://rutaspana.vercel.app"
     }
   ]
 }

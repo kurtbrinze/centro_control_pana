@@ -12,6 +12,7 @@ Funciona en laptop, tablet y celular, y se puede instalar como app. Estilo Rinze
 | Entregas a CEDI | https://kurtbrinze.github.io/CD/ (en el centro: `/apps/cd/`) |
 | Agenda | https://agenda-chi-wheat.vercel.app/ |
 | Desviaciones | https://kurtbrinze.github.io/Desviaciones/ (en el centro: `/apps/desviaciones/`) |
+| Resumen Rutas Supermercados | https://rutaspana.vercel.app (en el centro: `/apps/rutas/`) |
 
 ## Agregar una app
 
@@ -32,7 +33,7 @@ Edita `apps.json` y copia un bloque:
 ```
 
 - `corto`: nombre breve para la barra del celular.
-- `icono`: produccion, entregas, desviaciones, agenda, inventario, documento, camara, grafica o caja.
+- `icono`: produccion, entregas, desviaciones, agenda, rutas, inventario, documento, camara, grafica o caja.
 - `modo`: `embebida` (dentro del centro) o `pestana` (se abre aparte, para apps que no funcionan dentro de un marco).
 
 Al guardar en GitHub, Vercel publica el cambio solo.
@@ -40,8 +41,8 @@ Al guardar en GitHub, Vercel publica el cambio solo.
 ## Apps que eligen carpetas
 
 Chrome no deja que una app embebida desde otro sitio abra el selector de
-carpetas (`showDirectoryPicker`). Por eso Control Producción, Entregas a CEDI
-y Desviaciones se sirven desde el mismo sitio del centro: `vercel.json` reenvía
+carpetas (`showDirectoryPicker`). Por eso Control Producción, Entregas a CEDI,
+Desviaciones y Resumen Rutas se sirven desde el mismo sitio del centro: `vercel.json` reenvía
 `/apps/produccion/` a Vercel y `/apps/cd/` y `/apps/desviaciones/` a GitHub
 Pages. Siguen publicándose como siempre; el centro sólo las muestra desde su
 propia dirección.

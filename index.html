@@ -280,14 +280,15 @@ details.cl .cls b{color:var(--tx);font-weight:500}
 </div>
 
 <script>
-const VERSION = 'V.12';
+const VERSION = 'V.13';
 
 /* Copia de respaldo del registro. La fuente principal es apps.json. */
 const RESPALDO = [
   {id:'produccion',nombre:'Control Producción',corto:'Producción',descripcion:'Cálculo y control de la producción diaria.',url:'/apps/produccion/',icono:'produccion',dispositivos:['Laptop','Tablet'],hosting:'Vercel',modo:'embebida'},
   {id:'entregas',nombre:'Entregas a CEDI',corto:'Entregas',descripcion:'Formularios, órdenes de compra, citas y QR para el CEDI.',url:'/apps/cd/',icono:'entregas',dispositivos:['Laptop'],hosting:'GitHub',modo:'embebida'},
   {id:'agenda',nombre:'Agenda',corto:'Agenda',descripcion:'Citas, tareas y pendientes de la panadería.',url:'https://agenda-chi-wheat.vercel.app/',icono:'agenda',precargar:true,dispositivos:['Laptop','Celular'],hosting:'Vercel',modo:'embebida'},
-  {id:'desviaciones',nombre:'Desviaciones',corto:'Desviaciones',descripcion:'Análisis de lo pedido contra lo entregado.',url:'/apps/desviaciones/',icono:'desviaciones',dispositivos:['Laptop'],hosting:'GitHub',modo:'embebida'}
+  {id:'desviaciones',nombre:'Desviaciones',corto:'Desviaciones',descripcion:'Análisis de lo pedido contra lo entregado.',url:'/apps/desviaciones/',icono:'desviaciones',dispositivos:['Laptop'],hosting:'GitHub',modo:'embebida'},
+  {id:'rutas',nombre:'Resumen Rutas Supermercados',corto:'Rutas Súper',descripcion:'Resumen AM/PM de rutas para WhatsApp, cadenas, cambios y verificación.',url:'/apps/rutas/',icono:'rutas',dispositivos:['Laptop'],hosting:'Vercel',modo:'embebida'}
 ];
 
 const LOGO = `<svg viewBox="40 30 860 290" role="img" aria-label="Rinze Studio"><use href="#rinzeMark"/><g transform="translate(315, 45)"><text x="0" y="138" font-family="'Inter','Montserrat',-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif" font-size="136" font-weight="600" fill="#FFFFFF" letter-spacing="-2">Rinze</text><text x="6" y="218" font-family="'Inter','Montserrat',-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif" font-size="52" font-weight="500" fill="url(#studioTextGrad)" letter-spacing="22">STUDIO</text></g></svg>`;
@@ -301,6 +302,7 @@ const ICONOS = {
   inventario:'<path d="M21 8l-9-5-9 5 9 5 9-5z"/><path d="M3 8v8l9 5 9-5V8"/><path d="M12 13v8"/>',
   documento:'<path d="M14 3H6a1 1 0 0 0-1 1v16a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V8z"/><path d="M14 3v5h5M9 13h6M9 17h6"/>',
   camara:'<path d="M4 8h3l2-3h6l2 3h3a1 1 0 0 1 1 1v10a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V9a1 1 0 0 1 1-1z"/><circle cx="12" cy="13.5" r="3.5"/>',
+  rutas:'<circle cx="6" cy="5.5" r="2.5"/><circle cx="18" cy="18.5" r="2.5"/><path d="M8.5 5.5H16a3.25 3.25 0 0 1 0 6.5H8a3.25 3.25 0 0 0 0 6.5h7.5"/>',
   grafica:'<path d="M4 20V10M10 20V4M16 20v-7M22 20H2"/>',
   caja:'<rect x="3" y="4" width="18" height="16" rx="2"/><path d="M3 9h18M9 14h6"/>',
   recargar:'<path d="M20 11a8 8 0 1 0-2.3 5.7"/><path d="M20 4v7h-7"/>',
@@ -403,6 +405,11 @@ function tarjeta(a){
 const vacio = a => `<div class="c-vacio">${esc(a.descripcion || '')}<br><b>Abre ${esc(a.nombre)} una vez desde el centro</b> y aquí aparecerá su resumen del día.</div>`;
 
 const RESUMENES = {
+  rutas(d){
+    const t = (x, l) => x ? `<div><small>${l} · ${esc(diaTxt(x.fecha))}</small><strong>${num(x.unidades, 0)}<em>u.</em></strong><div class="lin">${x.rutas} ${x.rutas === 1 ? 'ruta' : 'rutas'} en la imagen</div></div>` : '';
+    if (!d.am && !d.pm) return `<div class="c-vacio">Todavía no se han cargado crudos.</div>`;
+    return `<div class="dia-lbl">Corte ${esc(diaTxt(d.corteDia))} ${esc(d.corteHora || '')}${d.sinVerif ? `<span class="pill r">${num(d.sinVerif, 0)} líneas sin verificar</span>` : ''}${d.cambios ? `<span class="pill a">${num(d.cambios, 0)} u. en cambios</span>` : ''}</div><div class="big">${t(d.am, 'Rutas AM')}${t(d.pm, 'Rutas PM')}</div>`;
+  },
   produccion(d){
     const plantas = (d.plantas || []).filter(p => p.decidido > 0 || p.sugerido > 0);
     if (!plantas.length) return `<div class="dia-lbl">${esc(diaTxt(d.fecha))}</div><div class="c-vacio">Todavía no hay producción decidida para este día.</div>`;

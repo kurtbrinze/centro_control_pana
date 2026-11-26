@@ -47,6 +47,11 @@
       "source": "/apps/desviaciones",
       "destination": "/apps/desviaciones/",
       "permanent": false
+    },
+    {
+      "source": "/apps/rutas",
+      "destination": "/apps/rutas/",
+      "permanent": false
     }
   ],
   "rewrites": [
@@ -73,6 +78,14 @@
     {
       "source": "/apps/desviaciones/:path+",
       "destination": "https://kurtbrinze.github.io/Desviaciones/:path+"
+    },
+    {
+      "source": "/apps/rutas/",
+      "destination": "https://rutaspana.vercel.app/"
+    },
+    {
+      "source": "/apps/rutas/:path+",
+      "destination": "https://rutaspana.vercel.app/:path+"
     }
   ]
 }
