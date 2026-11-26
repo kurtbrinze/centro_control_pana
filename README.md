@@ -77,6 +77,7 @@ una línea muestra las semanas de hoy.
 
 La versión visible está en `index.html` (`VERSION`). Cada actualización la sube.
 
+- **V.10** — El centro siempre abre en Inicio (Chrome podía reabrirlo en la última app usada). Los accesos directos del ícono usan ?app=. La luz de Calendario e Instalar ya no se enciende en Inicio.
 - **V.9** — Control Producción también se sirve desde el sitio del centro, para elegir la carpeta de archivos.
 - **V.8** — La luz verde del menú se enciende sólo en la app que está en pantalla.
 - **V.7** — Calendario flotante con semanas normales y Walmart; línea «Hoy» en el inicio; logo completo de Rinze Studio arriba a la izquierda (se quita el del pie del inicio).

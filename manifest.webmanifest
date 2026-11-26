@@ -37,7 +37,7 @@
     {
       "name": "Control Producción",
       "short_name": "Producción",
-      "url": "/#/produccion",
+      "url": "/?app=produccion",
       "icons": [
         {
           "src": "/icons/icon-192.png?v=5",
@@ -48,7 +48,7 @@
     {
       "name": "Entregas a CEDI",
       "short_name": "Entregas",
-      "url": "/#/entregas",
+      "url": "/?app=entregas",
       "icons": [
         {
           "src": "/icons/icon-192.png?v=5",
@@ -58,7 +58,7 @@
     },
     {
       "name": "Agenda",
-      "url": "/#/agenda",
+      "url": "/?app=agenda",
       "icons": [
         {
           "src": "/icons/icon-192.png?v=5",
@@ -68,7 +68,7 @@
     },
     {
       "name": "Desviaciones",
-      "url": "/#/desviaciones",
+      "url": "/?app=desviaciones",
       "icons": [
         {
           "src": "/icons/icon-192.png?v=5",

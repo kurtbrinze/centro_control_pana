@@ -6,7 +6,7 @@
    aquí: cada una maneja sus datos y su propia sincronización.
    La página y apps.json van primero a la red, para que un cambio publicado se
    vea al abrir; si no hay conexión, se usa la copia guardada. */
-const CACHE = 'centro-V.9';
+const CACHE = 'centro-V.10';
 const BASE = ['/', '/index.html', '/apps.json', '/manifest.webmanifest',
   '/icons/icon-192.png', '/icons/icon-512.png', '/icons/apple-touch-icon.png', '/icons/icon.svg'];
 
@@ -26,11 +26,16 @@ self.addEventListener('fetch', (e) => {
   /* /apps/... son las apps servidas desde este mismo sitio: tienen su propio
      service worker y sus propias copias. El centro no se mete. */
   if (url.pathname.startsWith('/apps/')) return;
-  const fresco = req.mode === 'navigate' || url.pathname === '/' || url.pathname.endsWith('.html') || url.pathname.endsWith('apps.json');
+  /* Sólo la página del centro se guarda como página del centro: cualquier
+     otra navegación pasa directo, para que nunca quede otra app guardada
+     en su lugar. */
+  const raiz = url.pathname === '/' || url.pathname === '/index.html';
+  if (req.mode === 'navigate' && !raiz) return;
+  const fresco = raiz || url.pathname.endsWith('apps.json');
   if (fresco) {
     e.respondWith(fetch(req, { cache: 'no-store' })
-      .then((r) => { if (r.ok) { const c = r.clone(); caches.open(CACHE).then((k) => k.put(req.mode === 'navigate' ? '/' : req, c)); } return r; })
-      .catch(() => caches.match(req.mode === 'navigate' ? '/' : req).then((r) => r || caches.match('/index.html'))));
+      .then((r) => { if (r.ok) { const c = r.clone(); caches.open(CACHE).then((k) => k.put(raiz ? '/' : req, c)); } return r; })
+      .catch(() => caches.match(raiz ? '/' : req).then((r) => r || caches.match('/index.html'))));
     return;
   }
   e.respondWith(caches.match(req).then((r) => r || fetch(req).then((res) => {

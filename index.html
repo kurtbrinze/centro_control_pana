@@ -244,7 +244,7 @@ svg.i.sm{width:18px;height:18px}
 </div>
 
 <script>
-const VERSION = 'V.9';
+const VERSION = 'V.10';
 
 /* Copia de respaldo del registro. La fuente principal es apps.json. */
 const RESPALDO = [
@@ -391,7 +391,7 @@ function mostrar(){
        lo último de su nube (Producción y Agenda sincronizan con Vercel Blob). */
     if (w.dataset.cargada) avisarApp(w);
   }
-  document.querySelectorAll('.item, .bottom button').forEach(b => b.classList.toggle('on', (b.dataset.id ?? '') === (a ? a.id : '') && (b.id !== 'nav-home' || !a)));
+  document.querySelectorAll('.item[data-id], .bottom button').forEach(b => b.classList.toggle('on', (b.dataset.id ?? '') === (a ? a.id : '')));
   document.getElementById('nav-home').classList.toggle('on', !a);
   document.title = (a ? a.nombre + ' · ' : '') + 'Centro de Control';
   pintarTopbar();
@@ -612,6 +612,13 @@ if ('serviceWorker' in navigator && (location.protocol === 'https:' || location.
   pintarNav();
   pintarInicio();
   pintarInstalar();
+  /* Al abrir, el centro empieza siempre en Inicio. Chrome, al reabrir una
+     ventana o la app instalada, puede traer la última dirección con su #/app;
+     eso no cuenta. Sólo los accesos directos del ícono (?app=...) abren una
+     app de entrada. */
+  const pedida = new URLSearchParams(location.search).get('app');
+  const inicial = APPS.some(a => a.id === pedida) ? '#/' + pedida : '#/';
+  history.replaceState(null, '', location.pathname + inicial);
   window.addEventListener('hashchange', leerHash);
   leerHash();
 })();
