@@ -94,6 +94,7 @@ una línea muestra las semanas de hoy.
 
 La versión visible está en `index.html` (`VERSION`). Cada actualización la sube.
 
+- **V.12** — Arreglo: la capa de las apps embebidas tapaba el inicio y los clics en las tarjetas no llegaban.
 - **V.11** — Tarjetas con el resumen del día de cada app (Producción por turno, próximas entregas, Agenda, Desviaciones); ícono y título abren la app; «Agregar aplicación» como botón abajo a la derecha y la nota al pie a la izquierda.
 - **V.10** — El centro siempre abre en Inicio (Chrome podía reabrirlo en la última app usada). Los accesos directos del ícono usan ?app=. La luz de Calendario e Instalar ya no se enciende en Inicio.
 - **V.9** — Control Producción también se sirve desde el sitio del centro, para elegir la carpeta de archivos.
