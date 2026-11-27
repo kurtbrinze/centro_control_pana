@@ -69,20 +69,20 @@ svg.i.sm{width:18px;height:18px}
 .home .sub{color:var(--tx2);font-size:14px;max-width:560px;line-height:1.6}
 .home{display:flex;flex-direction:column;padding-bottom:0}
 .home > .hoy{align-self:flex-start}
-.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,440px),1fr));gap:16px;margin-top:26px;max-width:1280px;align-items:start}
-.card{background:var(--s1);border:1px solid var(--line);border-radius:16px;padding:18px 18px 16px;display:flex;flex-direction:column;gap:14px;min-width:0}
-.c-hd{display:flex;align-items:center;gap:12px}
-.c-ic{width:44px;height:44px;flex:none;border-radius:12px;display:grid;place-items:center;background:var(--s2);border:1px solid var(--line2);transition:border-color .2s,transform .2s}
+.grid{--cols:3;display:grid;grid-template-columns:repeat(var(--cols),minmax(0,1fr));grid-auto-rows:20px;grid-auto-flow:row dense;gap:12px;margin-top:22px;max-width:1400px}
+.card{position:relative;background:var(--s1);border:1px solid var(--line);border-radius:14px;padding:12px 14px;display:flex;flex-direction:column;gap:10px;min-width:0;min-height:0;overflow:hidden;transition:box-shadow .15s,border-color .15s}
+.c-hd{display:flex;align-items:center;gap:10px;flex:none}
+.c-ic{width:34px;height:34px;flex:none;border-radius:10px;display:grid;place-items:center;background:var(--s2);border:1px solid var(--line2);transition:border-color .2s,transform .2s}
 .c-ic svg.i{stroke:url(#gr)}
 .c-ic:hover{border-color:var(--g);transform:translateY(-1px)}
 .c-tt{display:flex;flex-direction:column;align-items:flex-start;min-width:0;text-align:left}
-.c-tt b{font-size:15.5px;font-weight:600;color:var(--tx)}
+.c-tt b{font-size:14px;font-weight:600;color:var(--tx);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:100%}
 .c-tt:hover b{color:var(--g)}
 .c-tt span{font-size:11.5px;color:var(--tx3);margin-top:2px}
 .c-tt span.viejo{color:#f5b301}
 .c-ir{margin-left:auto;font-size:12px;font-weight:500;color:var(--c);padding:6px 8px;border-radius:8px;white-space:nowrap}
 .c-ir:hover{background:var(--s2)}
-.c-bd{display:flex;flex-direction:column;gap:12px;font-size:13px;color:var(--tx2);min-width:0}
+.c-bd{display:flex;flex-direction:column;gap:9px;font-size:12.5px;color:var(--tx2);min-width:0;min-height:0;flex:1;overflow:auto;scrollbar-width:thin;scrollbar-color:var(--line2) transparent;padding-right:2px}
 .c-vacio{padding:14px;border:1px dashed var(--line2);border-radius:12px;color:var(--tx3);font-size:12.5px;line-height:1.5}
 .c-vacio b{color:var(--tx2);font-weight:500}
 .dia-lbl{font-size:11px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--tx3);display:flex;align-items:center;gap:8px}
@@ -93,9 +93,9 @@ svg.i.sm{width:18px;height:18px}
 .pill.a{color:#f5b301;border-color:rgba(245,179,1,.4)}
 .pill.r{color:#ff6b6b;border-color:rgba(255,107,107,.45)}
 .big{display:flex;gap:10px;flex-wrap:wrap}
-.big > div{flex:1 1 120px;background:var(--bg);border:1px solid var(--line);border-radius:12px;padding:10px 12px;min-width:0}
+.big > div{flex:1 1 96px;background:var(--bg);border:1px solid var(--line);border-radius:10px;padding:7px 10px;min-width:0}
 .big small{display:block;font-size:11px;color:var(--tx3);font-weight:500}
-.big strong{display:block;font-size:20px;font-weight:700;color:var(--tx);margin-top:2px;font-variant-numeric:tabular-nums}
+.big strong{display:block;font-size:17px;font-weight:700;color:var(--tx);margin-top:2px;font-variant-numeric:tabular-nums}
 .big strong em{font-style:normal;font-size:12px;font-weight:500;color:var(--tx3);margin-left:3px}
 .big .lin{font-size:11.5px;color:var(--tx3);margin-top:3px}
 .lst{display:flex;flex-direction:column;gap:6px}
@@ -114,7 +114,7 @@ details.cl .cls{margin-top:8px;display:flex;flex-direction:column;gap:6px;font-s
 details.cl .cls b{color:var(--tx);font-weight:500}
 .mini{font-size:12px;color:var(--tx3);display:flex;flex-wrap:wrap;gap:4px 14px}
 .mini b{color:var(--tx2);font-weight:600}
-.home-pie{position:sticky;bottom:0;margin-top:auto;display:flex;align-items:center;gap:16px;padding:22px 0 18px;background:linear-gradient(to top,var(--bg) 70%,rgba(10,14,23,0))}
+.home-pie{position:sticky;bottom:0;margin-top:auto;display:flex;align-items:center;gap:10px;padding:22px 0 18px;background:linear-gradient(to top,var(--bg) 70%,rgba(10,14,23,0))}
 .tip{font-size:11.5px;color:var(--tx3);display:flex;gap:8px;align-items:center;margin-right:auto}
 .btn-add{display:inline-flex;align-items:center;gap:8px;height:40px;padding:0 16px;border-radius:12px;border:1px solid var(--line2);background:var(--s1);color:var(--tx);font-size:13px;font-weight:500;transition:border-color .2s}
 .btn-add svg.i{stroke:url(#gr)}
@@ -134,6 +134,25 @@ details.cl .cls b{color:var(--tx);font-weight:500}
 .loader .msg{font-size:14px;color:var(--tx2)}
 .loader .slow{display:none;flex-direction:column;align-items:center;gap:12px;font-size:13px;color:var(--tx3);max-width:320px}
 .loader.late .slow{display:flex}
+
+/* Tablero: mover y cambiar tamaño */
+.c-mover,.c-tam{display:none}
+.grid.editando .card{border-style:dashed;border-color:var(--line2);user-select:none}
+.grid.editando .card .c-bd{pointer-events:none}
+.grid.editando .c-mover{display:grid;place-items:center;width:30px;height:30px;flex:none;border-radius:8px;color:var(--tx2);cursor:grab;touch-action:none;background:var(--s2)}
+.grid.editando .c-mover:active{cursor:grabbing}
+.grid.editando .c-ir{display:none}
+.grid.editando .c-tam{display:block;position:absolute;right:0;bottom:0;width:22px;height:22px;cursor:nwse-resize;touch-action:none;z-index:2}
+.grid.editando .c-tam::after{content:"";position:absolute;right:5px;bottom:5px;width:10px;height:10px;border-right:2px solid var(--g);border-bottom:2px solid var(--g);border-radius:0 0 3px 0}
+.card.arrastrando{box-shadow:0 0 0 2px var(--g),0 16px 40px rgba(0,0,0,.5);z-index:5;opacity:.92}
+.card .c-medida{display:none;position:absolute;right:28px;bottom:6px;font-size:10.5px;font-family:'JetBrains Mono',monospace;color:var(--g)}
+.card.arrastrando .c-medida{display:block}
+.btn-org{display:inline-flex;align-items:center;gap:8px;height:40px;padding:0 14px;border-radius:12px;border:1px solid var(--line2);background:var(--s1);color:var(--tx2);font-size:13px;font-weight:500}
+.btn-org:hover{color:var(--tx);border-color:var(--tx3)}
+.btn-org.on{background:var(--grad);color:#04120B;border-color:transparent;font-weight:600}
+.btn-org.on svg.i{stroke:#04120B}
+.btn-org svg.i{stroke:currentColor}
+.btn-org[hidden]{display:none}
 
 /* Hoy (inicio) */
 .hoy{margin-top:22px;display:inline-flex;align-items:center;gap:14px;flex-wrap:wrap;padding:10px 14px;border-radius:12px;background:var(--s1);border:1px solid var(--line);font-size:13px;color:var(--tx2);text-align:left;transition:border-color .2s}
@@ -217,7 +236,7 @@ details.cl .cls b{color:var(--tx);font-weight:500}
   .grid{grid-template-columns:1fr;gap:12px;margin-top:20px}
   .card{padding:16px}
   .home-pie{position:static;background:none;flex-direction:column-reverse;align-items:stretch;gap:10px;padding:20px 0 14px}
-  .btn-add{justify-content:center}
+  .btn-add,.btn-org{justify-content:center}
   .bottom{display:flex;position:fixed;left:0;right:0;bottom:0;height:calc(var(--nav) + var(--safe-b));padding-bottom:var(--safe-b);background:var(--s1);border-top:1px solid var(--line);overflow-x:auto;z-index:30}
   .bottom button{flex:1 0 72px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:4px;font-size:10.5px;font-weight:500;color:var(--tx3);position:relative}
   .bottom button.on{color:var(--tx)}
@@ -280,7 +299,7 @@ details.cl .cls b{color:var(--tx);font-weight:500}
 </div>
 
 <script>
-const VERSION = 'V.13';
+const VERSION = 'V.14';
 
 /* Copia de respaldo del registro. La fuente principal es apps.json. */
 const RESPALDO = [
@@ -312,6 +331,8 @@ const ICONOS = {
   cerrar:'<path d="M6 6l12 12M18 6L6 18"/>',
   izq:'<path d="M15 6l-6 6 6 6"/>',
   der:'<path d="M9 6l6 6-6 6"/>',
+  mover:'<circle cx="9" cy="6" r="1"/><circle cx="15" cy="6" r="1"/><circle cx="9" cy="12" r="1"/><circle cx="15" cy="12" r="1"/><circle cx="9" cy="18" r="1"/><circle cx="15" cy="18" r="1"/>',
+  organizar:'<rect x="3" y="3" width="8" height="11" rx="1.5"/><rect x="13" y="3" width="8" height="6" rx="1.5"/><rect x="13" y="11" width="8" height="10" rx="1.5"/><rect x="3" y="16" width="8" height="5" rx="1.5"/>',
   instalar:'<path d="M12 4v11"/><path d="M7 10l5 5 5-5"/><path d="M5 20h14"/>',
   info:'<circle cx="12" cy="12" r="9"/><path d="M12 11v5M12 8h.01"/>'
 };
@@ -361,8 +382,11 @@ function pintarInicio(){
     <div class="grid" id="tarjetas">${APPS.map(a => `<article class="card" id="card-${esc(a.id)}">${tarjeta(a)}</article>`).join('')}</div>
     <div class="home-pie">
       <div class="tip">${ico('info','i sm')}<span>Si una app no carga dentro del centro, usa «Abrir aparte» en la barra superior.</span></div>
+      <button class="btn-org" id="btnRest" onclick="restablecerTablero()" hidden>${ico('recargar','i sm')}<span>Restablecer</span></button>
+      <button class="btn-org" id="btnOrg" onclick="organizar()">${ico('organizar','i sm')}<span>Organizar</span></button>
       <button class="btn-add" onclick="agregarApp()">${ico('mas','i sm')}Agregar aplicación</button>
     </div>`;
+  requestAnimationFrame(aplicarTablero);
 }
 
 /* ---------- Tarjetas con el resumen de cada app ----------
@@ -393,6 +417,7 @@ function tarjeta(a){
   const ins = leerInsight(a.id);
   const h = haceTxt(ins && ins.actualizado);
   const cab = `<div class="c-hd">
+      <span class="c-mover" data-mover="${esc(a.id)}" title="Arrastrar para mover">${ico('mover','i sm')}</span>
       <button class="c-ic" onclick="go('${esc(a.id)}')" aria-label="Abrir ${esc(a.nombre)}" title="Abrir ${esc(a.nombre)}">${ico(a.icono)}</button>
       <button class="c-tt" onclick="go('${esc(a.id)}')"><b>${esc(a.nombre)}</b><span class="${h.viejo ? 'viejo' : ''}">${esc(h.t)}</span></button>
       <button class="c-ir" onclick="go('${esc(a.id)}')">Abrir ›</button>
@@ -400,7 +425,7 @@ function tarjeta(a){
   const r = RESUMENES[a.id];
   let cuerpo;
   try { cuerpo = ins && r ? r(ins.datos || {}) : vacio(a); } catch { cuerpo = vacio(a); }
-  return cab + `<div class="c-bd">${cuerpo}</div>`;
+  return cab + `<div class="c-bd">${cuerpo}</div><span class="c-medida"></span><span class="c-tam" data-tam="${esc(a.id)}" title="Arrastrar para cambiar el tamaño"></span>`;
 }
 const vacio = a => `<div class="c-vacio">${esc(a.descripcion || '')}<br><b>Abre ${esc(a.nombre)} una vez desde el centro</b> y aquí aparecerá su resumen del día.</div>`;
 
@@ -471,6 +496,87 @@ const RESUMENES = {
       ${mini ? `<div class="mini">${mini}</div>` : ''}`;
   },
 };
+
+/* ---------- Tablero: orden y tamaño de las tarjetas ----------
+   Cuadrícula de columnas (según el ancho) y filas de 20 px. Cada tarjeta
+   ocupa c columnas y r filas; la cuadrícula acomoda las demás, así que
+   nunca se enciman. En «Organizar» se mueven con el asa de puntos y se les
+   cambia el tamaño desde la esquina inferior derecha. Se guarda por equipo. */
+const FILA = 20, HUECO = 12, MIN_R = 7, MAX_R = 40;
+const TAM_DEF = { c: 1, r: 11 };
+let tablero = (() => { try { return JSON.parse(leer('tablero') || 'null') || {}; } catch { return {}; } })();
+tablero.orden = tablero.orden || []; tablero.tam = tablero.tam || {};
+const guardarTablero = () => guardar('tablero', JSON.stringify(tablero));
+function ordenApps(){
+  const ids = APPS.map(a => a.id);
+  return tablero.orden.filter(id => ids.includes(id)).concat(ids.filter(id => !tablero.orden.includes(id)));
+}
+function columnas(){
+  const g = document.getElementById('tarjetas');
+  const w = g ? g.clientWidth : 900;
+  return Math.max(1, Math.min(4, Math.floor((w + HUECO) / (300 + HUECO))));
+}
+function aplicarTablero(){
+  const g = document.getElementById('tarjetas'); if (!g) return;
+  const cols = columnas();
+  g.style.setProperty('--cols', cols);
+  ordenApps().forEach((id, i) => {
+    const el = document.getElementById('card-' + id); if (!el) return;
+    const t = Object.assign({}, TAM_DEF, tablero.tam[id]);
+    el.style.order = i;
+    el.style.gridColumn = 'span ' + Math.min(t.c, cols);
+    el.style.gridRow = 'span ' + t.r;
+  });
+}
+function organizar(forzar){
+  const g = document.getElementById('tarjetas'), b = document.getElementById('btnOrg');
+  const on = typeof forzar === 'boolean' ? forzar : !g.classList.contains('editando');
+  g.classList.toggle('editando', on);
+  b.classList.toggle('on', on);
+  b.querySelector('span').textContent = on ? 'Listo' : 'Organizar';
+  document.getElementById('btnRest').hidden = !on;
+}
+(function arrastresTablero(){
+  let op = null;
+  document.addEventListener('pointerdown', e => {
+    const g = document.getElementById('tarjetas');
+    if (!g || !g.classList.contains('editando')) return;
+    const mv = e.target.closest('[data-mover]'), tm = e.target.closest('[data-tam]');
+    if (!mv && !tm) return;
+    e.preventDefault();
+    const id = (mv || tm).dataset.mover || (mv || tm).dataset.tam;
+    const el = document.getElementById('card-' + id);
+    const r = el.getBoundingClientRect();
+    const colW = (g.clientWidth - HUECO * (columnas() - 1)) / columnas();
+    op = { tipo: mv ? 'mover' : 'tam', id, el, x: e.clientX, y: e.clientY, w: r.width, h: r.height, colW };
+    el.classList.add('arrastrando');
+    (mv || tm).setPointerCapture(e.pointerId);
+  });
+  document.addEventListener('pointermove', e => {
+    if (!op) return;
+    if (op.tipo === 'tam'){
+      const cols = columnas();
+      const c = Math.max(1, Math.min(cols, Math.round((op.w + e.clientX - op.x + HUECO) / (op.colW + HUECO))));
+      const r = Math.max(MIN_R, Math.min(MAX_R, Math.round((op.h + e.clientY - op.y + HUECO) / (FILA + HUECO))));
+      const t = tablero.tam[op.id] || {};
+      if (t.c !== c || t.r !== r){ tablero.tam[op.id] = { c, r }; aplicarTablero(); }
+      op.el.querySelector('.c-medida').textContent = c + ' × ' + r;
+      return;
+    }
+    /* Mover: la tarjeta toma el lugar de la que está bajo el puntero. */
+    const bajo = document.elementsFromPoint(e.clientX, e.clientY).map(x => x.closest && x.closest('.card')).find(x => x && x !== op.el);
+    if (!bajo) return;
+    const orden = ordenApps(), de = orden.indexOf(op.id), a = orden.indexOf(bajo.id.replace('card-', ''));
+    if (de < 0 || a < 0 || de === a) return;
+    orden.splice(de, 1); orden.splice(a, 0, op.id);
+    tablero.orden = orden; aplicarTablero();
+  });
+  const fin = () => { if (!op) return; op.el.classList.remove('arrastrando'); op = null; guardarTablero(); };
+  document.addEventListener('pointerup', fin);
+  document.addEventListener('pointercancel', fin);
+  addEventListener('resize', aplicarTablero);
+})();
+function restablecerTablero(){ tablero = { orden: [], tam: {} }; guardarTablero(); aplicarTablero(); }
 
 function repintarTarjeta(id){
   const el = document.getElementById('card-' + id);
@@ -554,7 +660,8 @@ function mostrar(){
   const a = APPS.find(x => x.id === actual);
   document.getElementById('home').style.display = a ? 'none' : '';
   /* De vuelta en Inicio: tarjetas al día y la Agenda escondida trae lo último. */
-  if (!a && document.getElementById('tarjetas')) { APPS.forEach(x => repintarTarjeta(x.id)); precargar(); }
+  if (!a && document.getElementById('tarjetas')) { APPS.forEach(x => repintarTarjeta(x.id)); aplicarTablero(); precargar(); }
+  if (a && document.getElementById('tarjetas')) organizar(false);
   Object.values(frames).forEach(w => w.classList.remove('on'));
   if (a){
     const w = frames[a.id] || crearFrame(a);

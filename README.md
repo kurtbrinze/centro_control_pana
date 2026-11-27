@@ -77,6 +77,14 @@ directo; la Agenda vive en otro sitio y manda su resumen sólo a la dirección
 del centro. Con `"precargar": true` en `apps.json` la app se abre escondida al
 arrancar, para que su tarjeta tenga datos frescos (hoy: Agenda).
 
+## Organizar el inicio
+
+«Organizar» activa el modo de edición del tablero: el asa de puntos mueve una
+tarjeta (toma el lugar de la que está debajo) y la esquina inferior derecha
+cambia su tamaño en columnas y filas. La cuadrícula acomoda las demás, así que
+nunca se enciman. El orden y los tamaños se guardan en el equipo
+(`cc.tablero`); «Restablecer» vuelve a lo de fábrica.
+
 ## Calendario
 
 Botón **Calendario** abajo a la izquierda (o Alt+C; en el celular, el ícono de
@@ -95,6 +103,8 @@ una línea muestra las semanas de hoy.
 
 La versión visible está en `index.html` (`VERSION`). Cada actualización la sube.
 
+- **V.14** — Tarjetas más compactas sobre una cuadrícula. Con «Organizar» se mueven (asa de puntos) y se les cambia el tamaño (esquina inferior derecha) sin encimarse; «Restablecer» vuelve al orden y tamaño de fábrica. Se guarda por equipo.
+- **V.13** — Agrega Resumen Rutas Supermercados.
 - **V.12** — Arreglo: la capa de las apps embebidas tapaba el inicio y los clics en las tarjetas no llegaban.
 - **V.11** — Tarjetas con el resumen del día de cada app (Producción por turno, próximas entregas, Agenda, Desviaciones); ícono y título abren la app; «Agregar aplicación» como botón abajo a la derecha y la nota al pie a la izquierda.
 - **V.10** — El centro siempre abre en Inicio (Chrome podía reabrirlo en la última app usada). Los accesos directos del ícono usan ?app=. La luz de Calendario e Instalar ya no se enciende en Inicio.
