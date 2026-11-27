@@ -1,5 +1,5 @@
 {
-  "_ayuda": "Para agregar una app, copia un bloque y cambia sus datos. corto: nombre breve para la barra del celular. icono: produccion | entregas | desviaciones | agenda | rutas | inventario | documento | camara | grafica | caja. modo: embebida (dentro del centro) o pestana (se abre aparte). Las apps que necesitan elegir carpetas (Control Producción, Entregas a CEDI, Desviaciones, Resumen Rutas) se sirven desde el mismo sitio del centro, en /apps/..., con una regla en vercel.json; 'original' guarda su dirección real. precargar: true abre la app escondida al arrancar el centro, para que su tarjeta tenga datos frescos.",
+  "_ayuda": "Para agregar una app, copia un bloque y cambia sus datos. corto: nombre breve para la barra del celular. icono: produccion | pedidos | entregas | desviaciones | agenda | rutas | inventario | documento | camara | grafica | caja. modo: embebida (dentro del centro) o pestana (se abre aparte). Las apps que necesitan elegir carpetas (Control Producción, Pedidos, Entregas a CEDI, Desviaciones, Resumen Rutas) se sirven desde el mismo sitio del centro, en /apps/..., con una regla en vercel.json; 'original' guarda su dirección real. precargar: true abre la app escondida al arrancar el centro, para que su tarjeta tenga datos frescos.",
   "apps": [
     {
       "id": "produccion",
@@ -15,6 +15,22 @@
       "hosting": "Vercel",
       "modo": "embebida",
       "original": "https://calculoproduccion.vercel.app"
+    },
+    {
+      "id": "pedidos",
+      "nombre": "Pedidos",
+      "corto": "Pedidos",
+      "descripcion": "Pedidos y preventa: captura, resumen del día y lo que suma a producción.",
+      "url": "/apps/pedidos/",
+      "icono": "pedidos",
+      "dispositivos": [
+        "Laptop",
+        "Tablet",
+        "Celular"
+      ],
+      "hosting": "Vercel",
+      "modo": "embebida",
+      "original": "https://pedidospana.vercel.app"
     },
     {
       "id": "entregas",

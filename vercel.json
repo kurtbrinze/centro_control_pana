@@ -52,9 +52,22 @@
       "source": "/apps/rutas",
       "destination": "/apps/rutas/",
       "permanent": false
+    },
+    {
+      "source": "/apps/pedidos",
+      "destination": "/apps/pedidos/",
+      "permanent": false
     }
   ],
   "rewrites": [
+    {
+      "source": "/apps/pedidos/",
+      "destination": "https://pedidospana.vercel.app/"
+    },
+    {
+      "source": "/apps/pedidos/:path+",
+      "destination": "https://pedidospana.vercel.app/:path+"
+    },
     {
       "source": "/apps/produccion/",
       "destination": "https://calculoproduccion.vercel.app/"

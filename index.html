@@ -302,11 +302,12 @@ body.organizando #navList::before{content:'Arrastra para ordenar';display:block;
 </div>
 
 <script>
-const VERSION = 'V.15';
+const VERSION = 'V.16';
 
 /* Copia de respaldo del registro. La fuente principal es apps.json. */
 const RESPALDO = [
   {id:'produccion',nombre:'Control Producción',corto:'Producción',descripcion:'Cálculo y control de la producción diaria.',url:'/apps/produccion/',icono:'produccion',dispositivos:['Laptop','Tablet'],hosting:'Vercel',modo:'embebida'},
+  {id:'pedidos',nombre:'Pedidos',corto:'Pedidos',descripcion:'Pedidos y preventa: captura, resumen del día y lo que suma a producción.',url:'/apps/pedidos/',icono:'pedidos',dispositivos:['Laptop','Tablet','Celular'],hosting:'Vercel',modo:'embebida'},
   {id:'entregas',nombre:'Entregas a CEDI',corto:'Entregas',descripcion:'Formularios, órdenes de compra, citas y QR para el CEDI.',url:'/apps/cd/',icono:'entregas',dispositivos:['Laptop'],hosting:'GitHub',modo:'embebida'},
   {id:'agenda',nombre:'Agenda',corto:'Agenda',descripcion:'Citas, tareas y pendientes de la panadería.',url:'https://agenda-chi-wheat.vercel.app/',icono:'agenda',precargar:true,dispositivos:['Laptop','Celular'],hosting:'Vercel',modo:'embebida'},
   {id:'desviaciones',nombre:'Desviaciones',corto:'Desviaciones',descripcion:'Análisis de lo pedido contra lo entregado.',url:'/apps/desviaciones/',icono:'desviaciones',dispositivos:['Laptop'],hosting:'GitHub',modo:'embebida'},
@@ -324,6 +325,7 @@ const ICONOS = {
   inventario:'<path d="M21 8l-9-5-9 5 9 5 9-5z"/><path d="M3 8v8l9 5 9-5V8"/><path d="M12 13v8"/>',
   documento:'<path d="M14 3H6a1 1 0 0 0-1 1v16a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V8z"/><path d="M14 3v5h5M9 13h6M9 17h6"/>',
   camara:'<path d="M4 8h3l2-3h6l2 3h3a1 1 0 0 1 1 1v10a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V9a1 1 0 0 1 1-1z"/><circle cx="12" cy="13.5" r="3.5"/>',
+  pedidos:'<rect x="5" y="4" width="14" height="17" rx="2"/><path d="M9 2.5h6v3H9z"/><path d="M8.5 11l1.5 1.5 3-3"/><path d="M8.5 16.5h7"/>',
   rutas:'<circle cx="6" cy="5.5" r="2.5"/><circle cx="18" cy="18.5" r="2.5"/><path d="M8.5 5.5H16a3.25 3.25 0 0 1 0 6.5H8a3.25 3.25 0 0 0 0 6.5h7.5"/>',
   grafica:'<path d="M4 20V10M10 20V4M16 20v-7M22 20H2"/>',
   caja:'<rect x="3" y="4" width="18" height="16" rx="2"/><path d="M3 9h18M9 14h6"/>',
@@ -445,6 +447,13 @@ function tarjeta(a){
 const vacio = a => `<div class="c-vacio">${esc(a.descripcion || '')}<br><b>Abre ${esc(a.nombre)} una vez desde el centro</b> y aquí aparecerá su resumen del día.</div>`;
 
 const RESUMENES = {
+  pedidos(d){
+    const [hoy, man] = d.dias || [];
+    const bloque = (x) => !x ? '' : `<div class="lst"><div class="dia-lbl">${esc(diaTxt(x.fecha))}${x.suman ? `<span class="pill a">${num(x.suman, 0)} suman al sugerido</span>` : ''}</div>
+      ${x.pedidos ? `<div class="mini"><span><b>${num(x.pedidos, 0)}</b> pedidos</span><span><b>${num(x.clientes, 0)}</b> clientes</span><span><b>${num(x.bolsas, 0)}</b> bolsas</span>${x.entregados ? `<span><b>${num(x.entregados, 0)}</b> entregados</span>` : ''}</div>
+      <div class="tur">${(x.top || []).map((t) => `<span>${esc(t.prod)} <b>${num(t.bolsas, 0)}</b></span>`).join('')}</div>` : '<div class="mini"><span>Sin pedidos</span></div>'}</div>`;
+    return `<div class="dia-lbl"><span class="pill c">${num(d.pendientes, 0)} pendientes</span>${d.vencidos ? `<span class="pill r">${num(d.vencidos, 0)} vencidos sin cerrar</span>` : ''}</div>${bloque(hoy)}${bloque(man)}`;
+  },
   rutas(d){
     const t = (x, l) => x ? `<div><small>${l} · ${esc(diaTxt(x.fecha))}</small><strong>${num(x.unidades, 0)}<em>u.</em></strong><div class="lin">${x.rutas} ${x.rutas === 1 ? 'ruta' : 'rutas'} en la imagen</div></div>` : '';
     if (!d.am && !d.pm) return `<div class="c-vacio">Todavía no se han cargado crudos.</div>`;

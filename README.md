@@ -8,6 +8,7 @@ Funciona en laptop, tablet y celular, y se puede instalar como app. Estilo Rinze
 
 | App | Dónde vive |
 |---|---|
+| Pedidos | https://pedidospana.vercel.app (en el centro: `/apps/pedidos/`) |
 | Control Producción | https://calculoproduccion.vercel.app (en el centro: `/apps/produccion/`) |
 | Entregas a CEDI | https://kurtbrinze.github.io/CD/ (en el centro: `/apps/cd/`) |
 | Agenda | https://agenda-chi-wheat.vercel.app/ |
@@ -68,6 +69,7 @@ actualizó. Las apps lo dejan como `{ v, app, actualizado, datos }`:
 | App | Cómo llega | Qué trae |
 |---|---|---|
 | Control Producción | `localStorage` `cc.insight.produccion` | QQ del día por planta y por turno, con claves |
+| Pedidos | `localStorage` `cc.insight.pedidos` | Hoy y mañana: pedidos, clientes, bolsas, lo que más se pide, lo que suma y vencidos |
 | Entregas a CEDI | `localStorage` `cc.insight.entregas` | Próximas entregas: proveedor, OC, cita y estado |
 | Agenda | `postMessage` (`cc:insight`), se guarda en `cc.insight.agenda` | Hoy y el próximo día: rutas, empaques, personal, ausencias, reuniones y notas |
 | Desviaciones | `localStorage` `cc.insight.desviaciones` | Fill Rate vs objetivo, alertas (top 3), OC manuales, venta vs FCST y próximo evento |
@@ -104,6 +106,7 @@ una línea muestra las semanas de hoy.
 
 La versión visible está en `index.html` (`VERSION`). Cada actualización la sube.
 
+- **V.16** — Agrega Pedidos (app separada de Control Producción) servida en `/apps/pedidos/`, con su tarjeta.
 - **V.15** — En «Organizar» también se ordenan los botones de apps de la barra izquierda (y la barra de abajo del celular sigue ese orden).
 - **V.14** — Tarjetas más compactas sobre una cuadrícula. Con «Organizar» se mueven (asa de puntos) y se les cambia el tamaño (esquina inferior derecha) sin encimarse; «Restablecer» vuelve al orden y tamaño de fábrica. Se guarda por equipo.
 - **V.13** — Agrega Resumen Rutas Supermercados.
