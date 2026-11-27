@@ -495,7 +495,9 @@ const RESUMENES = {
       if (!ts.length) return '';
       return `<div class="lst"><div class="f"><span class="k">${esc(p.nombre)}</span></div><div class="tur">${ts.map(t => `<span class="${t.momento === 'PM' ? 'pm' : ''}">${esc(t.nombre)} <b>${num(t.usado, 2)}</b></span>`).join('')}</div></div>`;
     }).join('');
-    const claves = plantas.flatMap(p => (p.turnos || []).filter(t => t.claves && t.claves.length).map(t => `<div><b>${esc(t.nombre)}:</b> ${t.claves.map(c => `${esc(c.clave)} ${num(c.qq, 2)}`).join(' · ')}</div>`)).join('');
+    /* Claves por turno en tabla: turno · clave · QQ. */
+    const filasCl = plantas.flatMap(p => (p.turnos || []).filter(t => t.claves && t.claves.length).flatMap(t => t.claves.map((c, i) => `<tr><td class="k">${i ? '' : esc(t.nombre)}</td><td>${esc(c.clave)}</td><td class="r b">${num(c.qq, 2)}</td></tr>`))).join('');
+    const claves = filasCl ? `<table class="tb"><thead><tr><th>Turno</th><th>Clave</th><th class="r">QQ</th></tr></thead><tbody>${filasCl}</tbody></table>` : '';
     return `<div class="dia-lbl">${esc(diaTxt(d.fecha))}<span class="pill g">${num(d.decidido)} QQ decididos</span>${d.faltantes ? `<span class="pill r">${d.faltantes} con faltante</span>` : ''}</div>${tot}${turnos}${claves ? `<details class="cl"><summary>Ver claves por turno</summary><div class="cls">${claves}</div></details>` : ''}`;
   },
   entregas(d){
@@ -506,7 +508,8 @@ const RESUMENES = {
     const pend = d.dias.slice(0, 2).flatMap(x => x.entregas).filter(e => e.estado === 'por-calcular').length;
     return (pend ? `<div class="dia-lbl"><span class="pill r">${pend} por calcular en los próximos días</span></div>` : '') + d.dias.map(x => `
       <div class="lst"><div class="dia-lbl">${esc(diaTxt(x.fecha))}</div>
-      ${x.entregas.map(e => { const s = EST[e.estado] || ['', e.estado]; return `<div class="f"><span class="k">${esc(e.prov)}</span><span class="v">OC ${esc(e.oc)} · ${e.cita ? 'cita ' + esc(e.cita) : 'sin cita'}</span><span class="n"><span class="pill ${s[0]}">${esc(s[1])}</span></span></div>`; }).join('')}</div>`).join('');
+      <table class="tb"><thead><tr><th>Proveedor</th><th>OC</th><th>Cita</th><th class="r">Estado</th></tr></thead><tbody>
+      ${x.entregas.map(e => { const s = EST[e.estado] || ['', e.estado]; return `<tr><td class="k el" title="${esc(e.prov)}">${esc(e.prov)}</td><td style="white-space:nowrap">${esc(e.oc)}</td><td style="white-space:nowrap">${e.cita ? esc(e.cita) : '—'}</td><td class="r"><span class="pill ${s[0]}">${esc(s[1])}</span></td></tr>`; }).join('')}</tbody></table></div>`).join('');
   },
   agenda(d){
     const [hoy, prox] = d.dias || [];
