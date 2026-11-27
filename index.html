@@ -112,6 +112,22 @@ details.cl summary::before{content:'›';display:inline-block;transition:transfo
 details.cl[open] summary::before{transform:rotate(90deg)}
 details.cl .cls{margin-top:8px;display:flex;flex-direction:column;gap:6px;font-size:12px}
 details.cl .cls b{color:var(--tx);font-weight:500}
+.tb{width:100%;border-collapse:collapse;font-size:12px;table-layout:auto}
+.tb th{font-size:10px;color:var(--tx3);font-weight:600;text-align:left;padding:2px 6px 4px;border-bottom:1px solid var(--line);text-transform:uppercase;letter-spacing:.04em;white-space:nowrap}
+.tb td{padding:4px 6px;border-bottom:1px solid rgba(51,65,85,.45);color:var(--tx2);vertical-align:top}
+.tb tr:last-child td{border-bottom:0}
+.tb th:first-child,.tb td:first-child{padding-left:0}
+.tb th:last-child,.tb td:last-child{padding-right:0}
+.tb .r{text-align:right;font-variant-numeric:tabular-nums;white-space:nowrap}
+.tb td.k{color:var(--tx);font-weight:600;white-space:nowrap}
+.tb td.b{color:var(--tx);font-weight:700}
+.tb td.el{max-width:0;width:100%;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.tb2{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:0 16px;align-items:start}
+.sts{display:grid;grid-template-columns:repeat(auto-fit,minmax(64px,1fr));gap:6px}
+.sts > div{background:var(--bg);border:1px solid var(--line);border-radius:8px;padding:4px 8px;min-width:0}
+.sts small{display:block;font-size:10px;color:var(--tx3);text-transform:uppercase;letter-spacing:.04em;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.sts b{display:block;font-size:14px;color:var(--tx);font-weight:700;font-variant-numeric:tabular-nums;white-space:nowrap}
+.sec-t{font-size:10.5px;color:var(--tx3);text-transform:uppercase;letter-spacing:.05em;font-weight:600;margin-top:2px}
 .mini{font-size:12px;color:var(--tx3);display:flex;flex-wrap:wrap;gap:4px 14px}
 .mini b{color:var(--tx2);font-weight:600}
 .home-pie{position:sticky;bottom:0;margin-top:auto;display:flex;align-items:center;gap:10px;padding:22px 0 18px;background:linear-gradient(to top,var(--bg) 70%,rgba(10,14,23,0))}
@@ -302,7 +318,7 @@ body.organizando #navList::before{content:'Arrastra para ordenar';display:block;
 </div>
 
 <script>
-const VERSION = 'V.17';
+const VERSION = 'V.18';
 
 /* Copia de respaldo del registro. La fuente principal es apps.json. */
 const RESPALDO = [
@@ -449,16 +465,19 @@ const vacio = a => `<div class="c-vacio">${esc(a.descripcion || '')}<br><b>Abre 
 const RESUMENES = {
   pedidos(d){
     const [hoy, man] = d.dias || [];
-    /* Por día: cada clave con sus unidades (o bolsas si se pidió sólo por clave). */
+    /* Por día: indicadores en una fila y las claves en tabla (clave · unidades · bolsas). */
     const bloque = (x) => {
       if (!x) return '';
       const prods = x.prods || (x.top || []).map(t => ({ prod: t.prod, uni: 0, bol: t.bolsas }));
       const cab = `<div class="dia-lbl">${esc(diaTxt(x.fecha))}${x.suman ? `<span class="pill a">${num(x.suman, 0)} suman al sugerido</span>` : ''}</div>`;
       if (!x.pedidos) return `<div class="lst">${cab}<div class="mini"><span>Sin pedidos</span></div></div>`;
-      const max = 14, ver = prods.slice(0, max);
-      return `<div class="lst">${cab}
-        <div class="mini"><span><b>${num(x.pedidos, 0)}</b> pedidos</span><span><b>${num(x.clientes, 0)}</b> clientes</span>${x.unidades ? `<span><b>${num(x.unidades, 0)}</b> uni.</span>` : ''}<span><b>${num(x.bolsas, 0)}</b> bolsas</span>${x.valor ? `<span><b>Q${num(x.valor, 0)}</b></span>` : ''}${x.preparados ? `<span><b>${num(x.preparados, 0)}</b> preparados</span>` : ''}${x.entregados ? `<span><b>${num(x.entregados, 0)}</b> despachados</span>` : ''}</div>
-        <div class="tur">${ver.map(t => `<span>${esc(t.prod)} <b>${t.uni ? num(t.uni, 0) : num(t.bol, 0) + ' b'}</b></span>`).join('')}${prods.length > max ? `<span>+${prods.length - max} más</span>` : ''}</div></div>`;
+      const st = (t, v) => `<div><small>${t}</small><b>${v}</b></div>`;
+      const stats = `<div class="sts">${st('Pedidos', num(x.pedidos, 0))}${st('Clientes', num(x.clientes, 0))}${st('Bolsas', num(x.bolsas, 0))}${x.valor ? st('Valor', 'Q' + num(x.valor, 0)) : ''}${x.preparados ? st('Prep.', num(x.preparados, 0)) : ''}${x.entregados ? st('Desp.', num(x.entregados, 0)) : ''}</div>`;
+      const max = 12, ver = prods.slice(0, max);
+      /* Dos columnas de tabla cuando hay varias claves. */
+      const mitad = ver.length > 4 ? Math.ceil(ver.length / 2) : ver.length;
+      const tabla = (l) => l.length ? `<table class="tb"><thead><tr><th>Clave</th><th class="r">Unid.</th><th class="r">Bolsas</th></tr></thead><tbody>${l.map(t => `<tr><td class="k">${esc(t.prod)}</td><td class="r">${t.uni ? num(t.uni, 0) : '—'}</td><td class="r b">${num(t.bol, 0)}</td></tr>`).join('')}</tbody></table>` : '';
+      return `<div class="lst">${cab}${stats}<div class="tb2">${tabla(ver.slice(0, mitad))}${tabla(ver.slice(mitad))}</div>${prods.length > max ? `<div class="mini"><span>+${prods.length - max} claves más</span></div>` : ''}</div>`;
     };
     return `<div class="dia-lbl"><span class="pill c">${num(d.pendientes, 0)} por despachar</span>${d.vencidos ? `<span class="pill r">${num(d.vencidos, 0)} vencidos sin cerrar</span>` : ''}</div>${bloque(hoy)}${bloque(man)}`;
   },
@@ -492,19 +511,31 @@ const RESUMENES = {
   agenda(d){
     const [hoy, prox] = d.dias || [];
     if (!hoy) return vacio(APPS.find(a => a.id === 'agenda'));
+    const aus = (x) => x.ausencias.map(a => esc(a.nombre) + ' <span style="color:var(--tx3)">(' + esc(a.tipo) + ')</span>').join(', ');
     const bloque = (x, completo) => {
-      if (x.sinDespacho && !x.rutas.length) return `<div class="lst"><div class="dia-lbl">${esc(diaTxt(x.fecha))}<span class="pill">Sin despacho</span></div></div>`;
-      const rutas = completo ? x.rutas.map(r => `<div class="f"><span class="k">${esc(r.clientes || '—')}</span><span class="v">${r.camiones.map(c => esc(c.camion) + (c.chofer ? ' · ' + esc(c.chofer) : '') + (c.ayudantes.length ? ' + ' + esc(c.ayudantes.join(', ')) : '')).join(' / ')}</span>${r.parrillas ? `<span class="n">${esc(r.parrillas)} parr.</span>` : ''}</div>`).join('') : '';
-      const mini = [
-        `<span><b>${x.rutas.length}</b> ${x.rutas.length === 1 ? 'ruta' : 'rutas'}</span>`,
-        x.empaques.length ? `<span>Empaques: <b>${x.empaques.map(e => esc(e.prod) + ' ' + esc(e.cant)).join(', ')}</b></span>` : '',
-        `<span><b>${x.personal}</b> personas asignadas</span>`,
-        x.ausencias.length ? `<span>Ausencias: <b>${x.ausencias.map(a => esc(a.nombre) + ' (' + esc(a.tipo) + ')').join(', ')}</b></span>` : '',
-        x.reuniones.length ? `<span>Reuniones: <b>${x.reuniones.map(m => esc((m.hora ? m.hora + ' ' : '') + m.titulo)).join(', ')}</b></span>` : '',
-      ].filter(Boolean).join('');
-      const notas = completo && x.notas.length ? `<div class="mini">${x.notas.slice(0, 3).map(n => `<span>📝 ${esc(n)}</span>`).join('')}</div>` : '';
-      const nada = !x.rutas.length && !x.empaques.length && !x.reuniones.length && !x.notas.length;
-      return `<div class="lst"><div class="dia-lbl">${esc(diaTxt(x.fecha))}${x.feriado ? `<span class="pill a">${esc(x.feriado)}</span>` : ''}</div>${rutas}${nada ? `<div class="mini"><span>Sin rutas programadas${x.ausencias.length ? ' · ausencias: <b>' + x.ausencias.map(a => esc(a.nombre) + ' (' + esc(a.tipo) + ')').join(', ') + '</b>' : ''}</span></div>` : `<div class="mini">${mini}</div>`}${notas}</div>`;
+      const cab = `<div class="dia-lbl">${esc(diaTxt(x.fecha))}${x.feriado ? `<span class="pill a">${esc(x.feriado)}</span>` : ''}${x.sinDespacho && !x.rutas.length ? '<span class="pill">Sin despacho</span>' : ''}</div>`;
+      if (x.sinDespacho && !x.rutas.length) return `<div class="lst">${cab}</div>`;
+      /* Rutas: cliente · camión · equipo · parrillas. */
+      const rutas = completo && x.rutas.length ? `<table class="tb"><thead><tr><th>Ruta</th><th>Camión</th><th>Equipo</th>${x.rutas.some(r => r.parrillas) ? '<th class="r">Parr.</th>' : ''}</tr></thead><tbody>
+        ${x.rutas.map(r => { const cs = r.camiones || []; const eq = cs.map(c => [c.chofer, ...(c.ayudantes || [])].filter(Boolean).join(' + ')).join(' / ');
+          return `<tr><td class="k">${esc(r.clientes || '—')}</td><td style="white-space:nowrap">${cs.map(c => esc(c.camion)).join(' / ')}</td><td class="el" title="${esc(eq)}">${esc(eq)}</td>${x.rutas.some(q => q.parrillas) ? `<td class="r b">${r.parrillas ? esc(r.parrillas) : ''}</td>` : ''}</tr>`; }).join('')}</tbody></table>` : '';
+      /* Empaques: producto · cantidad, en dos columnas. */
+      const emp = completo && x.empaques.length ? (() => {
+        const l = x.empaques, m = l.length > 3 ? Math.ceil(l.length / 2) : l.length;
+        const t = (z) => z.length ? `<table class="tb"><thead><tr><th>Empaque</th><th class="r">Cant.</th></tr></thead><tbody>${z.map(e => `<tr><td class="k">${esc(e.prod)}</td><td class="r b">${esc(e.cant)}</td></tr>`).join('')}</tbody></table>` : '';
+        return `<div class="tb2">${t(l.slice(0, m))}${t(l.slice(m))}</div>`;
+      })() : '';
+      /* Resumen del día como filas de dato. */
+      const filas = [
+        ['Rutas', `<b style="color:var(--tx)">${x.rutas.length}</b>`],
+        !completo && x.empaques.length ? ['Empaques', x.empaques.map(e => esc(e.prod) + ' <b style="color:var(--tx)">' + esc(e.cant) + '</b>').join(' · ')] : null,
+        ['Personal', `<b style="color:var(--tx)">${x.personal}</b> asignadas`],
+        x.ausencias.length ? ['Ausencias', aus(x)] : null,
+        x.reuniones.length ? ['Reuniones', x.reuniones.map(m => esc((m.hora ? m.hora + ' ' : '') + m.titulo)).join(' · ')] : null,
+        completo && x.notas.length ? ['Notas', x.notas.slice(0, 3).map(esc).join(' · ')] : null,
+      ].filter(Boolean);
+      const datos = `<table class="tb"><tbody>${filas.map(([k, v]) => `<tr><td class="k" style="width:1%;color:var(--tx3);font-weight:500">${k}</td><td>${v}</td></tr>`).join('')}</tbody></table>`;
+      return `<div class="lst">${cab}${rutas}${emp}${datos}</div>`;
     };
     return bloque(hoy, true) + (prox ? bloque(prox, false) : '');
   },

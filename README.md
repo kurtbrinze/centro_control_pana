@@ -106,6 +106,7 @@ una línea muestra las semanas de hoy.
 
 La versión visible está en `index.html` (`VERSION`). Cada actualización la sube.
 
+- **V.18** — Tarjetas de Agenda y Pedidos ordenadas en tablas: rutas (ruta · camión · equipo · parrillas), empaques, datos del día; pedidos con indicadores y claves (clave · unidades · bolsas).
 - **V.17** — La tarjeta de Pedidos muestra hoy y mañana por clave con sus unidades, el valor en quetzales y cuántos van preparados o despachados.
 - **V.16** — Agrega Pedidos (app separada de Control Producción) servida en `/apps/pedidos/`, con su tarjeta.
 - **V.15** — En «Organizar» también se ordenan los botones de apps de la barra izquierda (y la barra de abajo del celular sigue ese orden).
