@@ -106,6 +106,7 @@ una línea muestra las semanas de hoy.
 
 La versión visible está en `index.html` (`VERSION`). Cada actualización la sube.
 
+- **V.19** — Tema global Rinze en `tema/rinze-tema.css` (oscuro «Grafito & Plata», por defecto; claro «Ámbar & Cobre» con `data-tema="claro"`). El Centro y todas las apps lo cargan; dentro del Centro las apps ocultan su logo y versión (`rz-en-centro`).
 - **V.18** — Tarjetas de Agenda y Pedidos ordenadas en tablas: rutas (ruta · camión · equipo · parrillas), empaques, datos del día; pedidos con indicadores y claves (clave · unidades · bolsas).
 - **V.17** — La tarjeta de Pedidos muestra hoy y mañana por clave con sus unidades, el valor en quetzales y cuántos van preparados o despachados.
 - **V.16** — Agrega Pedidos (app separada de Control Producción) servida en `/apps/pedidos/`, con su tarjeta.
@@ -124,3 +125,9 @@ La versión visible está en `index.html` (`VERSION`). Cada actualización la su
 - **V.3** — Instalable como app (PWA): ícono, pantalla completa, accesos directos a cada app y funciona sin conexión para abrir el centro.
 - **V.2** — Avisa a la app que se vuelve a mostrar para que traiga lo último de su nube.
 - **V.1** — Centro con barra lateral, íconos en tablet y navegación inferior en celular; registro en `apps.json`.
+
+## Tema global
+
+`tema/rinze-tema.css` define los tokens `--rz-*` de los dos temas y las píldoras `.rz-badge` (ok, warn, crit). Cada app lo enlaza desde
+`https://centrocontrolpana.vercel.app/tema/rinze-tema.css` antes de su propio CSS, y su CSS usa esos tokens con los mismos valores de respaldo
+(si no hay conexión se ve igual). Para cambiar de tema: `localStorage['rz.tema'] = 'claro' | 'oscuro'` (las apps dentro del Centro toman el del Centro).

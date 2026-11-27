@@ -1,0 +1,106 @@
+/* =====================================================================
+   Rinze Studio · Tema global de la suite del Centro de Control
+   ---------------------------------------------------------------------
+   Una sola fuente para la apariencia de todas las apps. Cada app carga
+   este archivo ANTES de su propio CSS y usa los tokens --rz-*; su CSS
+   trae los mismos valores de respaldo, así que sin conexión se ve igual.
+
+   Temas:
+   - Oscuro «Grafito & Plata Industrial» (por defecto).
+   - Claro «Ámbar & Cobre Industrial»: <html data-tema="claro">.
+
+   Regla de color: la interfaz es neutra (silencio visual). El color
+   sólo aparece en estados y alertas: éxito, advertencia y crítico.
+   ===================================================================== */
+:root, [data-tema="oscuro"] {
+  color-scheme: dark;
+  /* Superficies */
+  --rz-bg: #0D0F12;            /* canvas */
+  --rz-card: #16191E;          /* tarjetas */
+  --rz-card-borde: #262A32;
+  --rz-elev: #1F232B;          /* elevada, hover, inputs */
+  --rz-elev-borde: #323741;
+  --rz-linea: #262A32;         /* divisores de tabla */
+  /* Texto */
+  --rz-tx: #F3F4F6;
+  --rz-tx2: #9CA3AF;
+  --rz-tx3: #6B7280;
+  /* Acción principal: blanco hueso */
+  --rz-pri: #F3F4F6;
+  --rz-pri-tx: #0D0F12;
+  --rz-pri-hover: #FFFFFF;
+  /* Navegación activa */
+  --rz-act: #262A32;
+  --rz-act-ind: #E5E7EB;
+  --rz-act-tx: #FFFFFF;
+  /* Enlaces de acción */
+  --rz-link: #D1D5DB;
+  --rz-link-hover: #FFFFFF;
+  --rz-foco: #9CA3AF;
+  /* Semánticos */
+  --rz-ok-bg: rgba(22, 163, 74, .15);   --rz-ok-borde: rgba(22, 163, 74, .3);   --rz-ok: #4ADE80;
+  --rz-warn-bg: rgba(217, 119, 6, .15); --rz-warn-borde: rgba(217, 119, 6, .3); --rz-warn: #FBBF24;
+  --rz-crit-bg: rgba(220, 38, 38, .15); --rz-crit-borde: rgba(220, 38, 38, .3); --rz-crit: #F87171;
+  /* Neutro para badges sin significado (cancelado, sin cita…) */
+  --rz-neu-bg: rgba(156, 163, 175, .10); --rz-neu-borde: rgba(156, 163, 175, .25); --rz-neu: #9CA3AF;
+  --rz-sombra: none;
+  /* Marca: el logo va en plata */
+  --rz-logo-1: #F3F4F6;
+  --rz-logo-2: #9CA3AF;
+}
+
+[data-tema="claro"] {
+  color-scheme: light;
+  --rz-bg: #F8FAFC;
+  --rz-card: #FFFFFF;
+  --rz-card-borde: #E2E8F0;
+  --rz-elev: #F1F5F9;
+  --rz-elev-borde: #CBD5E1;
+  --rz-linea: #E2E8F0;
+  --rz-tx: #0F172A;
+  --rz-tx2: #475569;
+  --rz-tx3: #64748B;
+  --rz-pri: #B45309;
+  --rz-pri-tx: #FFFFFF;
+  --rz-pri-hover: #92400E;
+  --rz-act: #FEF3C7;
+  --rz-act-ind: #F59E0B;
+  --rz-act-tx: #92400E;
+  --rz-link: #B45309;
+  --rz-link-hover: #78350F;
+  --rz-foco: #D97706;
+  --rz-ok-bg: #DCFCE7;   --rz-ok-borde: #86EFAC;   --rz-ok: #166534;
+  --rz-warn-bg: #FEF3C7; --rz-warn-borde: #FCD34D; --rz-warn: #92400E;
+  --rz-crit-bg: #FEE2E2; --rz-crit-borde: #FCA5A5; --rz-crit: #991B1B;
+  --rz-neu-bg: #F1F5F9;  --rz-neu-borde: #CBD5E1;  --rz-neu: #475569;
+  --rz-sombra: 0 1px 3px rgba(15, 23, 42, .04);
+  --rz-logo-1: #B45309;
+  --rz-logo-2: #78350F;
+}
+
+:root {
+  /* Geometría y tipografía (iguales en los dos temas) */
+  --rz-r-card: 12px;
+  --rz-r-btn: 8px;
+  --rz-r-badge: 6px;
+  --rz-pad-card: 20px;
+  --rz-fila: 44px;
+  --rz-font: Inter, Geist, system-ui, -apple-system, 'Segoe UI', sans-serif;
+  --rz-mono: 'JetBrains Mono', ui-monospace, monospace;
+}
+
+/* ---------- utilidades que cualquier app puede usar ---------- */
+.rz-badge {
+  display: inline-flex; align-items: center; gap: 4px; white-space: nowrap;
+  font-size: 11px; font-weight: 600; line-height: 1; padding: 4px 8px;
+  border-radius: var(--rz-r-badge); border: 1px solid var(--rz-neu-borde);
+  background: var(--rz-neu-bg); color: var(--rz-neu);
+}
+.rz-badge.ok   { background: var(--rz-ok-bg);   border-color: var(--rz-ok-borde);   color: var(--rz-ok); }
+.rz-badge.warn { background: var(--rz-warn-bg); border-color: var(--rz-warn-borde); color: var(--rz-warn); }
+.rz-badge.crit { background: var(--rz-crit-bg); border-color: var(--rz-crit-borde); color: var(--rz-crit); }
+.rz-num, .rz-tabla td, .rz-tabla th { font-variant-numeric: tabular-nums; }
+
+/* Dentro del Centro de Control el encabezado global ya dice qué app es:
+   cada app marca <html class="rz-en-centro"> y oculta su logo y versión. */
+.rz-en-centro .rz-solo-fuera { display: none !important; }
