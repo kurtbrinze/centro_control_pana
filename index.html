@@ -302,7 +302,7 @@ body.organizando #navList::before{content:'Arrastra para ordenar';display:block;
 </div>
 
 <script>
-const VERSION = 'V.16';
+const VERSION = 'V.17';
 
 /* Copia de respaldo del registro. La fuente principal es apps.json. */
 const RESPALDO = [
@@ -449,10 +449,18 @@ const vacio = a => `<div class="c-vacio">${esc(a.descripcion || '')}<br><b>Abre 
 const RESUMENES = {
   pedidos(d){
     const [hoy, man] = d.dias || [];
-    const bloque = (x) => !x ? '' : `<div class="lst"><div class="dia-lbl">${esc(diaTxt(x.fecha))}${x.suman ? `<span class="pill a">${num(x.suman, 0)} suman al sugerido</span>` : ''}</div>
-      ${x.pedidos ? `<div class="mini"><span><b>${num(x.pedidos, 0)}</b> pedidos</span><span><b>${num(x.clientes, 0)}</b> clientes</span><span><b>${num(x.bolsas, 0)}</b> bolsas</span>${x.entregados ? `<span><b>${num(x.entregados, 0)}</b> entregados</span>` : ''}</div>
-      <div class="tur">${(x.top || []).map((t) => `<span>${esc(t.prod)} <b>${num(t.bolsas, 0)}</b></span>`).join('')}</div>` : '<div class="mini"><span>Sin pedidos</span></div>'}</div>`;
-    return `<div class="dia-lbl"><span class="pill c">${num(d.pendientes, 0)} pendientes</span>${d.vencidos ? `<span class="pill r">${num(d.vencidos, 0)} vencidos sin cerrar</span>` : ''}</div>${bloque(hoy)}${bloque(man)}`;
+    /* Por día: cada clave con sus unidades (o bolsas si se pidió sólo por clave). */
+    const bloque = (x) => {
+      if (!x) return '';
+      const prods = x.prods || (x.top || []).map(t => ({ prod: t.prod, uni: 0, bol: t.bolsas }));
+      const cab = `<div class="dia-lbl">${esc(diaTxt(x.fecha))}${x.suman ? `<span class="pill a">${num(x.suman, 0)} suman al sugerido</span>` : ''}</div>`;
+      if (!x.pedidos) return `<div class="lst">${cab}<div class="mini"><span>Sin pedidos</span></div></div>`;
+      const max = 14, ver = prods.slice(0, max);
+      return `<div class="lst">${cab}
+        <div class="mini"><span><b>${num(x.pedidos, 0)}</b> pedidos</span><span><b>${num(x.clientes, 0)}</b> clientes</span>${x.unidades ? `<span><b>${num(x.unidades, 0)}</b> uni.</span>` : ''}<span><b>${num(x.bolsas, 0)}</b> bolsas</span>${x.valor ? `<span><b>Q${num(x.valor, 0)}</b></span>` : ''}${x.preparados ? `<span><b>${num(x.preparados, 0)}</b> preparados</span>` : ''}${x.entregados ? `<span><b>${num(x.entregados, 0)}</b> despachados</span>` : ''}</div>
+        <div class="tur">${ver.map(t => `<span>${esc(t.prod)} <b>${t.uni ? num(t.uni, 0) : num(t.bol, 0) + ' b'}</b></span>`).join('')}${prods.length > max ? `<span>+${prods.length - max} más</span>` : ''}</div></div>`;
+    };
+    return `<div class="dia-lbl"><span class="pill c">${num(d.pendientes, 0)} por despachar</span>${d.vencidos ? `<span class="pill r">${num(d.vencidos, 0)} vencidos sin cerrar</span>` : ''}</div>${bloque(hoy)}${bloque(man)}`;
   },
   rutas(d){
     const t = (x, l) => x ? `<div><small>${l} · ${esc(diaTxt(x.fecha))}</small><strong>${num(x.unidades, 0)}<em>u.</em></strong><div class="lin">${x.rutas} ${x.rutas === 1 ? 'ruta' : 'rutas'} en la imagen</div></div>` : '';

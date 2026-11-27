@@ -106,6 +106,7 @@ una línea muestra las semanas de hoy.
 
 La versión visible está en `index.html` (`VERSION`). Cada actualización la sube.
 
+- **V.17** — La tarjeta de Pedidos muestra hoy y mañana por clave con sus unidades, el valor en quetzales y cuántos van preparados o despachados.
 - **V.16** — Agrega Pedidos (app separada de Control Producción) servida en `/apps/pedidos/`, con su tarjeta.
 - **V.15** — En «Organizar» también se ordenan los botones de apps de la barra izquierda (y la barra de abajo del celular sigue ese orden).
 - **V.14** — Tarjetas más compactas sobre una cuadrícula. Con «Organizar» se mueven (asa de puntos) y se les cambia el tamaño (esquina inferior derecha) sin encimarse; «Restablecer» vuelve al orden y tamaño de fábrica. Se guarda por equipo.
