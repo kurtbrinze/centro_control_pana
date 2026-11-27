@@ -106,6 +106,7 @@ una línea muestra las semanas de hoy.
 
 La versión visible está en `index.html` (`VERSION`). Cada actualización la sube.
 
+- **V.21** — Tarjeta de Producción: los turnos por planta en tabla de 4 columnas (turno · QQ · turno · QQ).
 - **V.20** — Interruptor de tema claro/oscuro en la barra izquierda (y en la barra superior en celular). Cambia el Centro y todas las apps abiertas al instante (mensaje `cc:tema`) y se recuerda en `rz.tema`.
 - **V.19** — Tema global Rinze en `tema/rinze-tema.css` (oscuro «Grafito & Plata», por defecto; claro «Ámbar & Cobre» con `data-tema="claro"`). El Centro y todas las apps lo cargan; dentro del Centro las apps ocultan su logo y versión (`rz-en-centro`).
 - **V.18** — Tarjetas de Agenda y Pedidos ordenadas en tablas: rutas (ruta · camión · equipo · parrillas), empaques, datos del día; pedidos con indicadores y claves (clave · unidades · bolsas).

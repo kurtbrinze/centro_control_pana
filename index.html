@@ -268,6 +268,7 @@ body.organizando #navList::before{content:'Arrastra para ordenar';display:block;
   .bottom .lbl{max-width:76px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 }
 table,.tb,.big strong,.sts b{font-variant-numeric:tabular-nums}
+.tb4{table-layout:fixed}.tb4 td{white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.tb4 td:nth-child(3),.tb4 th:nth-child(3){padding-left:14px}.tb4 td.pm{color:var(--tx3)}
 </style>
 </head>
 <body>
@@ -324,7 +325,7 @@ table,.tb,.big strong,.sts b{font-variant-numeric:tabular-nums}
 </div>
 
 <script>
-const VERSION = 'V.20';
+const VERSION = 'V.21';
 
 /* Copia de respaldo del registro. La fuente principal es apps.json. */
 const RESPALDO = [
@@ -501,7 +502,12 @@ const RESUMENES = {
     const turnos = plantas.map(p => {
       const ts = (p.turnos || []).filter(t => t.usado > 0);
       if (!ts.length) return '';
-      return `<div class="lst"><div class="f"><span class="k">${esc(p.nombre)}</span></div><div class="tur">${ts.map(t => `<span class="${t.momento === 'PM' ? 'pm' : ''}">${esc(t.nombre)} <b>${num(t.usado, 2)}</b></span>`).join('')}</div></div>`;
+      /* 4 columnas: turno · QQ · turno · QQ (dos turnos por fila). */
+      const celda = (t) => t ? `<td class="${t.momento === 'PM' ? 'pm' : ''}">${esc(t.nombre)}</td><td class="r b">${num(t.usado, 2)}</td>` : '<td></td><td></td>';
+      const filas = [];
+      for (let i = 0; i < ts.length; i += 2) filas.push(`<tr>${celda(ts[i])}${celda(ts[i + 1])}</tr>`);
+      return `<div class="lst"><div class="sec-t">${esc(p.nombre)}</div><table class="tb tb4"><colgroup><col><col style="width:44px"><col><col style="width:44px"></colgroup>
+        <thead><tr><th>Turno</th><th class="r">QQ</th><th>Turno</th><th class="r">QQ</th></tr></thead><tbody>${filas.join('')}</tbody></table></div>`;
     }).join('');
     /* Claves por turno en tabla: turno · clave · QQ. */
     const filasCl = plantas.flatMap(p => (p.turnos || []).filter(t => t.claves && t.claves.length).flatMap(t => t.claves.map((c, i) => `<tr><td class="k">${i ? '' : esc(t.nombre)}</td><td>${esc(c.clave)}</td><td class="r b">${num(c.qq, 2)}</td></tr>`))).join('');
