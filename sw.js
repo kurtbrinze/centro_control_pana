@@ -6,7 +6,7 @@
    aquí: cada una maneja sus datos y su propia sincronización.
    La página y apps.json van primero a la red, para que un cambio publicado se
    vea al abrir; si no hay conexión, se usa la copia guardada. */
-const CACHE = 'centro-V.19';
+const CACHE = 'centro-V.20';
 const BASE = ['/', '/index.html', '/apps.json', '/manifest.webmanifest',
   '/icons/icon-192.png', '/icons/icon-512.png', '/icons/apple-touch-icon.png', '/icons/icon.svg'];
 

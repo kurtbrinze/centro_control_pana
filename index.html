@@ -54,7 +54,7 @@ svg.i.sm{width:18px;height:18px}
 
 /* Zona principal */
 .main{position:relative;min-width:0;min-height:0;display:flex;flex-direction:column}
-.topbar{height:calc(var(--top) + var(--safe-t));padding-top:var(--safe-t)!important;flex:none;display:flex;align-items:center;gap:12px;padding:0 16px 0 20px;border-bottom:1px solid var(--line);background:rgba(10,14,23,.85);backdrop-filter:blur(8px)}
+.topbar{height:calc(var(--top) + var(--safe-t));padding-top:var(--safe-t)!important;flex:none;display:flex;align-items:center;gap:12px;padding:0 16px 0 20px;border-bottom:1px solid var(--line);background:color-mix(in srgb,var(--bg) 88%,transparent);backdrop-filter:blur(8px)}
 .topbar .ttl{display:flex;align-items:center;gap:10px;min-width:0}
 .topbar .ttl h1{font-size:15px;font-weight:600;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 .topbar .ttl .host{font-size:11px;color:var(--tx3);font-family:'JetBrains Mono',monospace;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
@@ -118,7 +118,7 @@ details.cl .cls{margin-top:8px;display:flex;flex-direction:column;gap:6px;font-s
 details.cl .cls b{color:var(--tx);font-weight:500}
 .tb{width:100%;border-collapse:collapse;font-size:12px;table-layout:auto}
 .tb th{font-size:10px;color:var(--tx3);font-weight:600;text-align:left;padding:2px 6px 4px;border-bottom:1px solid var(--line);text-transform:uppercase;letter-spacing:.04em;white-space:nowrap}
-.tb td{padding:4px 6px;border-bottom:1px solid rgba(51,65,85,.45);color:var(--tx2);vertical-align:top}
+.tb td{padding:4px 6px;border-bottom:1px solid var(--line);color:var(--tx2);vertical-align:top}
 .tb tr:last-child td{border-bottom:0}
 .tb th:first-child,.tb td:first-child{padding-left:0}
 .tb th:last-child,.tb td:last-child{padding-right:0}
@@ -134,7 +134,7 @@ details.cl .cls b{color:var(--tx);font-weight:500}
 .sec-t{font-size:10.5px;color:var(--tx3);text-transform:uppercase;letter-spacing:.05em;font-weight:600;margin-top:2px}
 .mini{font-size:12px;color:var(--tx3);display:flex;flex-wrap:wrap;gap:4px 14px}
 .mini b{color:var(--tx2);font-weight:600}
-.home-pie{position:sticky;bottom:0;margin-top:auto;display:flex;align-items:center;gap:10px;padding:22px 0 18px;background:linear-gradient(to top,var(--bg) 70%,rgba(10,14,23,0))}
+.home-pie{position:sticky;bottom:0;margin-top:auto;display:flex;align-items:center;gap:10px;padding:22px 0 18px;background:linear-gradient(to top,var(--bg) 70%,transparent)}
 .tip{font-size:11.5px;color:var(--tx3);display:flex;gap:8px;align-items:center;margin-right:auto}
 .btn-add{display:inline-flex;align-items:center;gap:8px;height:40px;padding:0 16px;border-radius:12px;border:1px solid var(--line2);background:var(--s1);color:var(--tx);font-size:13px;font-weight:500;transition:border-color .2s}
 .btn-add svg.i{stroke:currentColor}
@@ -185,7 +185,7 @@ body.organizando #navList::before{content:'Arrastra para ordenar';display:block;
 .hoy .wm{color:var(--g);font-family:'JetBrains Mono',monospace;font-weight:500}
 .hoy .sepv{width:1px;height:16px;background:var(--line2)}
 .hoy .ver-cal{color:var(--c);font-weight:500}
-.cal-movil{display:none}
+.cal-movil,.tema-movil{display:none}
 
 /* Calendario flotante */
 .cal{position:fixed;z-index:60;width:min(760px,calc(100vw - 24px));max-height:calc(100vh - 24px);display:none;flex-direction:column;background:var(--s1);border:1px solid var(--line2);border-radius:16px;box-shadow:0 24px 60px rgba(0,0,0,.55);overflow:hidden}
@@ -215,7 +215,7 @@ body.organizando #navList::before{content:'Arrastra para ordenar';display:block;
 .mes td.d{cursor:pointer;border-radius:6px}
 .mes td.d:hover{background:var(--s2);color:var(--tx)}
 .mes td.fin{color:var(--tx3)}
-.mes tr.semhoy td.d{background:rgba(229,231,235,.05)}
+.mes tr.semhoy td.d{background:color-mix(in srgb,var(--tx) 5%,transparent)}
 .mes td.hoyd{background:var(--grad)!important;color:var(--pri-tx);font-weight:700}
 .mes td.sel{outline:1.5px solid var(--c);outline-offset:-1.5px;color:var(--tx)}
 .cal-ft{padding:10px 16px 12px;border-top:1px solid var(--line);font-size:12.5px;color:var(--tx2);display:flex;flex-wrap:wrap;gap:6px 18px;align-items:center}
@@ -225,7 +225,7 @@ body.organizando #navList::before{content:'Arrastra para ordenar';display:block;
 .cal.arr ~ .cal-escudo{display:block}
 @media (max-width:1100px){.cal-bd{grid-template-columns:repeat(3,1fr)}}
 @media (max-width:640px){
-  .cal-movil{display:inline-flex}
+  .cal-movil,.tema-movil{display:inline-flex}
   #calRail{display:none}
   .cal{left:0!important;top:0!important;width:100vw;height:100dvh;max-height:none;border-radius:0;border:0}
   .cal-hd{cursor:default;padding-top:calc(10px + var(--safe-t));flex-wrap:wrap}
@@ -294,6 +294,7 @@ table,.tb,.big strong,.sts b{font-variant-numeric:tabular-nums}
     <nav class="nav-list" id="navList"></nav>
     <div class="rail-foot">
       <button class="item" id="calRail" onclick="calAlternar()" title="Calendario (Alt+C)"></button>
+      <button class="item" id="temaRail" onclick="temaAlternar()"></button>
       <button class="item inst" id="instRail" onclick="instalar()"></button>
       <span class="ver" id="ver"></span>
     </div>
@@ -323,7 +324,7 @@ table,.tb,.big strong,.sts b{font-variant-numeric:tabular-nums}
 </div>
 
 <script>
-const VERSION = 'V.19';
+const VERSION = 'V.20';
 
 /* Copia de respaldo del registro. La fuente principal es apps.json. */
 const RESPALDO = [
@@ -360,6 +361,8 @@ const ICONOS = {
   mover:'<circle cx="9" cy="6" r="1"/><circle cx="15" cy="6" r="1"/><circle cx="9" cy="12" r="1"/><circle cx="15" cy="12" r="1"/><circle cx="9" cy="18" r="1"/><circle cx="15" cy="18" r="1"/>',
   organizar:'<rect x="3" y="3" width="8" height="11" rx="1.5"/><rect x="13" y="3" width="8" height="6" rx="1.5"/><rect x="13" y="11" width="8" height="10" rx="1.5"/><rect x="3" y="16" width="8" height="5" rx="1.5"/>',
   instalar:'<path d="M12 4v11"/><path d="M7 10l5 5 5-5"/><path d="M5 20h14"/>',
+  sol:'<circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/>',
+  luna:'<path d="M20 14.5A8 8 0 0 1 9.5 4a8 8 0 1 0 10.5 10.5z"/>',
   info:'<circle cx="12" cy="12" r="9"/><path d="M12 11v5M12 8h.01"/>'
 };
 const ico = (n, cls='i') => `<svg class="${cls}" viewBox="0 0 24 24" aria-hidden="true">${ICONOS[n]||ICONOS.caja}</svg>`;
@@ -718,13 +721,14 @@ function pintarTopbar(){
   const tb = document.getElementById('topbar');
   const a = APPS.find(x => x.id === actual);
   if (!a){
-    tb.innerHTML = `<div class="ttl"><h1>Inicio</h1></div><div class="acts" style="align-items:center;gap:10px"><button class="btn cal-movil" onclick="calAlternar()" title="Calendario">${ico('calendario','i sm')}</button><button class="btn pri inst${puedeInstalar() ? ' show' : ''}" onclick="instalar()">${ico('instalar','i sm')}<span class="t">Instalar app</span></button><span class="ver">${VERSION}</span></div>`;
+    tb.innerHTML = `<div class="ttl"><h1>Inicio</h1></div><div class="acts" style="align-items:center;gap:10px"><button class="btn cal-movil" onclick="calAlternar()" title="Calendario">${ico('calendario','i sm')}</button><button class="btn tema-movil" onclick="temaAlternar()" title="Cambiar a tema ${temaActual() === 'oscuro' ? 'claro' : 'oscuro'}">${ico(temaActual() === 'oscuro' ? 'sol' : 'luna','i sm')}</button><button class="btn pri inst${puedeInstalar() ? ' show' : ''}" onclick="instalar()">${ico('instalar','i sm')}<span class="t">Instalar app</span></button><span class="ver">${VERSION}</span></div>`;
     return;
   }
   tb.innerHTML = `
     <div class="ttl">${ico(a.icono)}<div style="min-width:0"><h1>${esc(a.nombre)}</h1><div class="host">${esc(hostDe(a.url))}</div></div></div>
     <div class="acts">
       <button class="btn cal-movil" onclick="calAlternar()" title="Calendario">${ico('calendario','i sm')}</button>
+      <button class="btn tema-movil" onclick="temaAlternar()" title="Cambiar a tema ${temaActual() === 'oscuro' ? 'claro' : 'oscuro'}">${ico(temaActual() === 'oscuro' ? 'sol' : 'luna','i sm')}</button>
       <button class="btn" onclick="recargar()" title="Recargar">${ico('recargar','i sm')}<span class="t">Recargar</span></button>
       <a class="btn" href="${esc(a.url)}" target="_blank" rel="noopener" title="Abrir aparte">${ico('aparte','i sm')}<span class="t">Abrir aparte</span></a>
       <button class="btn pri" onclick="go('')" title="Inicio">${ico('inicio','i sm')}<span class="t">Inicio</span></button>
@@ -745,7 +749,7 @@ function crearFrame(a){
   const f = wrap.querySelector('iframe');
   const ld = wrap.querySelector('.loader');
   const lento = setTimeout(() => ld.classList.add('late'), 10000);
-  f.addEventListener('load', () => { clearTimeout(lento); ld.classList.add('gone'); wrap.dataset.cargada = '1'; });
+  f.addEventListener('load', () => { clearTimeout(lento); ld.classList.add('gone'); wrap.dataset.cargada = '1'; try { f.contentWindow.postMessage({ tipo: 'cc:tema', tema: temaActual() }, '*'); } catch (_) {} });
   f.src = a.url;
   document.getElementById('frames').appendChild(wrap);
   frames[a.id] = wrap;
@@ -951,6 +955,25 @@ document.addEventListener('keydown', e => {
   addEventListener('resize', () => { if (el().classList.contains('show')) calPosicionar(); });
 })();
 
+/* ---------- Tema claro / oscuro ----------
+   Se guarda en rz.tema y se manda a cada app abierta: las del mismo sitio
+   lo leen al abrir y todas lo cambian en vivo con el mensaje cc:tema. */
+const temaActual = () => document.documentElement.getAttribute('data-tema') === 'claro' ? 'claro' : 'oscuro';
+function pintarTema(){
+  const t = temaActual(), otro = t === 'oscuro' ? 'claro' : 'oscuro';
+  const b = document.getElementById('temaRail');
+  b.innerHTML = ico(t === 'oscuro' ? 'sol' : 'luna') + `<span class="lbl">${t === 'oscuro' ? 'Tema claro' : 'Tema oscuro'}</span>`;
+  b.title = 'Cambiar a tema ' + otro + ' en el Centro y en todas las apps';
+  document.querySelector('meta[name="theme-color"]').setAttribute('content', t === 'oscuro' ? '#0D0F12' : '#F8FAFC');
+}
+function temaAlternar(){
+  const t = temaActual() === 'oscuro' ? 'claro' : 'oscuro';
+  try { localStorage.setItem('rz.tema', t); } catch (_) {}
+  document.documentElement.setAttribute('data-tema', t);
+  document.querySelectorAll('iframe').forEach(f => { try { f.contentWindow.postMessage({ tipo: 'cc:tema', tema: t }, '*'); } catch (_) {} });
+  pintarTema(); pintarTopbar();
+}
+
 /* ---------- Instalar como app ---------- */
 let promptInstalar = null;
 const instalada = () => matchMedia('(display-mode: standalone)').matches || navigator.standalone === true;
@@ -960,6 +983,7 @@ function pintarInstalar(){
   const r = document.getElementById('instRail');
   r.innerHTML = ico('instalar') + '<span class="lbl">Instalar</span>';
   document.getElementById('calRail').innerHTML = ico('calendario') + '<span class="lbl">Calendario</span>';
+  pintarTema();
   document.querySelectorAll('.inst').forEach(b => b.classList.toggle('show', puedeInstalar()));
 }
 async function instalar(){
