@@ -153,6 +153,9 @@ details.cl .cls b{color:var(--tx);font-weight:500}
 .btn-org.on svg.i{stroke:#04120B}
 .btn-org svg.i{stroke:currentColor}
 .btn-org[hidden]{display:none}
+body.organizando #navList .item{outline:1px dashed var(--line2);outline-offset:-2px;cursor:grab;touch-action:none;user-select:none}
+body.organizando #navList .item.moviendo{outline:2px solid var(--g);background:rgba(0,255,136,.1);cursor:grabbing}
+body.organizando #navList::before{content:'Arrastra para ordenar';display:block;font-size:9.5px;color:var(--g);text-align:center;padding:0 4px 4px}
 
 /* Hoy (inicio) */
 .hoy{margin-top:22px;display:inline-flex;align-items:center;gap:14px;flex-wrap:wrap;padding:10px 14px;border-radius:12px;background:var(--s1);border:1px solid var(--line);font-size:13px;color:var(--tx2);text-align:left;transition:border-color .2s}
@@ -299,7 +302,7 @@ details.cl .cls b{color:var(--tx);font-weight:500}
 </div>
 
 <script>
-const VERSION = 'V.14';
+const VERSION = 'V.15';
 
 /* Copia de respaldo del registro. La fuente principal es apps.json. */
 const RESPALDO = [
@@ -358,14 +361,26 @@ async function cargarRegistro(){
 
 function pintarNav(){
   document.getElementById('nav-home').innerHTML = ico('inicio') + '<span class="lbl">Inicio</span>';
-  document.getElementById('navList').innerHTML = APPS.map(a =>
+  pintarMenu();
+  document.getElementById('ver').textContent = VERSION;
+  document.getElementById('logoRail').outerHTML = LOGO;
+}
+/* Botones de apps de la barra (y de la barra de abajo en el celular), en el
+   orden que se eligió con «Organizar» (tablero.menu). */
+function appsMenu(){
+  const orden = (typeof tablero !== 'undefined' && tablero.menu) || [];
+  const ids = APPS.map(a => a.id);
+  return orden.filter(id => ids.includes(id)).concat(ids.filter(id => !orden.includes(id))).map(id => APPS.find(a => a.id === id));
+}
+function pintarMenu(){
+  const L = appsMenu();
+  document.getElementById('navList').innerHTML = L.map(a =>
     `<button class="item" data-id="${esc(a.id)}" data-tip="${esc(a.nombre)}" onclick="go('${esc(a.id)}')">${ico(a.icono)}<span class="lbl">${esc(a.nombre)}</span><span class="dot"></span></button>`
   ).join('');
   document.getElementById('bottom').innerHTML =
     `<button data-id="" onclick="go('')">${ico('inicio')}<span class="lbl">Inicio</span></button>` +
-    APPS.map(a => `<button data-id="${esc(a.id)}" onclick="go('${esc(a.id)}')">${ico(a.icono)}<span class="lbl">${esc(a.corto || a.nombre)}</span></button>`).join('');
-  document.getElementById('ver').textContent = VERSION;
-  document.getElementById('logoRail').outerHTML = LOGO;
+    L.map(a => `<button data-id="${esc(a.id)}" onclick="go('${esc(a.id)}')">${ico(a.icono)}<span class="lbl">${esc(a.corto || a.nombre)}</span></button>`).join('');
+  document.querySelectorAll('.item[data-id], .bottom button').forEach(b => b.classList.toggle('on', (b.dataset.id ?? '') === actual));
 }
 
 function saludo(){
@@ -505,7 +520,7 @@ const RESUMENES = {
 const FILA = 20, HUECO = 12, MIN_R = 7, MAX_R = 40;
 const TAM_DEF = { c: 1, r: 11 };
 let tablero = (() => { try { return JSON.parse(leer('tablero') || 'null') || {}; } catch { return {}; } })();
-tablero.orden = tablero.orden || []; tablero.tam = tablero.tam || {};
+tablero.orden = tablero.orden || []; tablero.tam = tablero.tam || {}; tablero.menu = tablero.menu || [];
 const guardarTablero = () => guardar('tablero', JSON.stringify(tablero));
 function ordenApps(){
   const ids = APPS.map(a => a.id);
@@ -535,6 +550,7 @@ function organizar(forzar){
   b.classList.toggle('on', on);
   b.querySelector('span').textContent = on ? 'Listo' : 'Organizar';
   document.getElementById('btnRest').hidden = !on;
+  document.body.classList.toggle('organizando', on);
 }
 (function arrastresTablero(){
   let op = null;
@@ -576,7 +592,31 @@ function organizar(forzar){
   document.addEventListener('pointercancel', fin);
   addEventListener('resize', aplicarTablero);
 })();
-function restablecerTablero(){ tablero = { orden: [], tam: {} }; guardarTablero(); aplicarTablero(); }
+function restablecerTablero(){ tablero = { orden: [], tam: {}, menu: [] }; guardarTablero(); aplicarTablero(); pintarMenu(); }
+/* Reordenar los botones de apps de la barra izquierda mientras se organiza. */
+(function arrastreMenu(){
+  let mov = null;
+  document.addEventListener('pointerdown', e => {
+    if (!document.body.classList.contains('organizando')) return;
+    const it = e.target.closest('#navList .item[data-id]');
+    if (!it) return;
+    e.preventDefault();
+    mov = it.dataset.id;
+    it.classList.add('moviendo');
+  });
+  document.addEventListener('pointermove', e => {
+    if (!mov) return;
+    const bajo = document.elementsFromPoint(e.clientX, e.clientY).map(x => x.closest && x.closest('#navList .item[data-id]')).find(x => x && x.dataset.id !== mov);
+    if (!bajo) return;
+    const orden = appsMenu().map(a => a.id), de = orden.indexOf(mov), a = orden.indexOf(bajo.dataset.id);
+    orden.splice(de, 1); orden.splice(a, 0, mov);
+    tablero.menu = orden; pintarMenu();
+    document.querySelector(`#navList .item[data-id="${CSS.escape(mov)}"]`)?.classList.add('moviendo');
+  });
+  const fin = () => { if (!mov) return; mov = null; document.querySelectorAll('#navList .moviendo').forEach(x => x.classList.remove('moviendo')); guardarTablero(); };
+  document.addEventListener('pointerup', fin);
+  document.addEventListener('pointercancel', fin);
+})();
 
 function repintarTarjeta(id){
   const el = document.getElementById('card-' + id);
@@ -681,6 +721,8 @@ function avisarApp(w){
 }
 
 function go(id){
+  /* Mientras se organiza, tocar una app no la abre: sólo se mueve. */
+  if (id && document.body.classList.contains('organizando')) return;
   const a = APPS.find(x => x.id === id);
   if (a && a.modo === 'pestana'){ window.open(a.url, '_blank', 'noopener'); return; }
   location.hash = a ? '#/' + a.id : '#/';

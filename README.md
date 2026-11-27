@@ -82,7 +82,8 @@ arrancar, para que su tarjeta tenga datos frescos (hoy: Agenda).
 «Organizar» activa el modo de edición del tablero: el asa de puntos mueve una
 tarjeta (toma el lugar de la que está debajo) y la esquina inferior derecha
 cambia su tamaño en columnas y filas. La cuadrícula acomoda las demás, así que
-nunca se enciman. El orden y los tamaños se guardan en el equipo
+nunca se enciman. En el mismo modo, los botones de apps de la barra izquierda
+se arrastran para cambiar su orden. El orden y los tamaños se guardan en el equipo
 (`cc.tablero`); «Restablecer» vuelve a lo de fábrica.
 
 ## Calendario
@@ -103,6 +104,7 @@ una línea muestra las semanas de hoy.
 
 La versión visible está en `index.html` (`VERSION`). Cada actualización la sube.
 
+- **V.15** — En «Organizar» también se ordenan los botones de apps de la barra izquierda (y la barra de abajo del celular sigue ese orden).
 - **V.14** — Tarjetas más compactas sobre una cuadrícula. Con «Organizar» se mueven (asa de puntos) y se les cambia el tamaño (esquina inferior derecha) sin encimarse; «Restablecer» vuelve al orden y tamaño de fábrica. Se guarda por equipo.
 - **V.13** — Agrega Resumen Rutas Supermercados.
 - **V.12** — Arreglo: la capa de las apps embebidas tapaba el inicio y los clics en las tarjetas no llegaban.
